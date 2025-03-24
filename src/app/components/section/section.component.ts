@@ -1,0 +1,30 @@
+import { Component, Input } from '@angular/core';
+import { Section } from '../../model/section.model';
+
+@Component({
+  selector: 'app-section',
+  templateUrl: './section.component.html',
+  styleUrls: ['./section.component.css']
+})
+export class SectionComponent {
+  @Input() data!: Section;
+
+  visibleItems:any;
+  isExpanded = false;
+
+  ngOnInit() {
+    this.visibleItems = this.data.items.slice(0, 9);
+  }
+
+  toggleViewMore() {
+  
+    this.isExpanded = !this.isExpanded;
+    this.visibleItems = this.isExpanded ? this.data.items : this.data.items.slice(0, 5);
+  }
+
+  openInNewTab(url: string) {
+    const fullUrl = window.location.origin + url; // Construct full URL
+    window.open(fullUrl, '_blank'); // Open in a new tab
+  }
+  
+}
