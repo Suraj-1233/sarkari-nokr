@@ -1,0 +1,52 @@
+<div class="dynamicForm">
+<form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()">
+
+    <!-- Select Data Type Dropdown -->
+    <label>Data Type:</label>
+    <select formControlName="dataType" (change)="onDataTypeChange($event)">
+      <option value="list">List</option>
+      <option value="table">Table</option>
+    </select>
+  
+    <!-- List Section -->
+    <div *ngIf="selectedDataType === 'list'">
+      <h3>List Data</h3>
+      <div *ngFor="let item of listData.controls; let i = index">
+        <input [formControlName]="i" />
+        <button type="button" (click)="removeListItem(i)">Remove</button>
+      </div>
+      <button type="button" (click)="addListItem()">Add List Item</button>
+    </div>
+  
+    <div *ngIf="selectedDataType === 'table'">
+        <label>Number of Rows:</label>
+        <input type="number" [(ngModel)]="numRows" min="1" />
+    
+        <label>Number of Columns:</label>
+        <input type="number" [(ngModel)]="numCols" min="1" />
+    
+        <button type="button" (click)="generateTable()">Generate Table</button>
+    
+        <table border="1" *ngIf="tableData.length > 0">
+          <thead>
+            <tr>
+              <th *ngFor="let col of [].constructor(numCols); let j = index">
+                Column {{ j + 1 }}
+              </th>
+            </tr>
+          </thead>
+    
+          <tbody>
+            <tr *ngFor="let rowCtrl of tableData.controls; let i = index" [formGroupName]="'row' + i">
+              <td *ngFor="let colCtrl of getControls(rowCtrl) | keyvalue">
+                <input [formControlName]="colCtrl.key" />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+    <button type="submit">Submit</button>
+  </form>
+</div>
+  

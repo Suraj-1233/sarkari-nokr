@@ -1,5 +1,11 @@
 export interface Section {
     title: string;
-    items: string[];
-    link: string;
-}
+    type:string;
+    items: SectionItem[];
+  }
+  
+  export interface SectionItem {
+    text: string;
+    id:string
+  }
+  
