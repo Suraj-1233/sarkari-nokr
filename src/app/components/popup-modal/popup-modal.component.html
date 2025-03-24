@@ -1,0 +1,21 @@
+<div class="popup-container">
+    <h2 class="popup-title">Choose Type</h2>
+
+    <select [(ngModel)]="type" class="type-select">
+        <option value="list">List</option>
+        <option value="table">Table</option>
+    </select>
+
+    <div *ngIf="type === 'table'" class="table-inputs">
+        <label class="input-label">Rows:</label>
+        <input type="number" [(ngModel)]="rows" class="input-field">
+
+        <label class="input-label">Columns:</label>
+        <input type="number" [(ngModel)]="cols" class="input-field">
+    </div>
+
+    <div class="actions">
+        <button (click)="confirm()" class="action-button confirm-button">Confirm</button>
+        <button (click)="cancel()" class="action-button cancel-button">Cancel</button>
+    </div>
+</div>
