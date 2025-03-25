@@ -87,10 +87,10 @@ export class HeaderLinksComponent  implements OnInit {
   
 
   openInNewTab(url: string) {
-    const fullUrl = window.location.origin + url; // Construct full URL
+    const fullUrl = window.location.origin + '/#' + url; // Ensure hash-based routing
     window.open(fullUrl, '_blank'); // Open in a new tab
   }
-
+  
   getRandomColor(index: number): string {
     const colors = ["#FF5733", "#33FF57", "#3357FF", "#F3C623", "#E91E63"];
     return colors[index % colors.length]; // Cycles through colors

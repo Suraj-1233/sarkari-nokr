@@ -53,8 +53,8 @@ export class TypeListComponent {
 
 
   openInNewTab(url: string) {
-    const fullUrl = window.location.origin + url;
-    window.open(fullUrl, '_blank');
+    const fullUrl = window.location.origin + '/#' + url; 
+    window.open(fullUrl, '_blank'); 
   }
 
 

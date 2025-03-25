@@ -42,8 +42,8 @@ export class HeaderComponent {
   
 
   openInNewTab(url: string) {
-    const fullUrl = window.location.origin + url; 
-    window.open(fullUrl, '_blank'); 
+    const fullUrl = window.location.origin + '/#' + url; // Ensure hash-based routing
+    window.open(fullUrl, '_blank'); // Open in a new tab
   }
 
 }

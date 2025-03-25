@@ -14,7 +14,7 @@ export class CrudButtonsComponent {
 
   // ✅ Create Post
   createPost() {
-    this.router.navigate(['/create-post']); // Create post page pe bhejega
+    this.router.navigate(['/create-post']); 
   }
 
   // ✏️ Update Post
@@ -23,7 +23,7 @@ export class CrudButtonsComponent {
       alert('Please enter a valid Post ID for updating!');
       return;
     }
-    this.router.navigate(['/update-post', this.postId]); // Update page pe bhejega
+    this.router.navigate(['/update-post', this.postId]); 
   }
 
   // ❌ Delete Post
