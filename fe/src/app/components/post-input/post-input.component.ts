@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RecordService } from 'src/app/services/record.service';
 
 @Component({
   selector: 'app-post-input',
@@ -12,6 +13,8 @@ export class PostInputComponent {
   short_information: string = '';
 
   data: any[] = []; // Unified array for lists & tables
+  constructor(private recordService: RecordService) {}
+
 
   // Add a new List
   addList() {
@@ -119,6 +122,14 @@ export class PostInputComponent {
         }
       }),
     };
+
+    this.recordService.createRecord(formattedData).subscribe({
+      next: () => {
+        alert('Post  created Successfully!');
+       
+      },
+      error: (err) => console.error('Error deleting post:', err),
+    });
 
     console.log('Final Output:', JSON.stringify(formattedData, null, 2));
     alert('Data submitted! Check the console for details.');
