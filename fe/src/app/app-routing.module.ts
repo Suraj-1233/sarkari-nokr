@@ -17,12 +17,11 @@ const routes: Routes = [
   { path: 'crud-buttons', component: CrudButtonsComponent },
   { path: 'update-post/:id', component: UpdatePostComponent }, 
   { path: 'create-post', component: PostInputComponent }, // Create page
-
  
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes , {useHash:true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
