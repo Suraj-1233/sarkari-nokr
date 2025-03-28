@@ -10,7 +10,7 @@ import com.example.mongo.service.RecordService;
 import java.util.Date;
 import java.util.List;
 
-@CrossOrigin(origins = "http://52.66.176.27:3000")
+// @CrossOrigin(origins = {"http://52.66.176.27:3000", "http://localhost:4200"})
 @RestController
 @RequestMapping("/records")
 public class RecordController {

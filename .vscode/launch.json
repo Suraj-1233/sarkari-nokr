@@ -3,6 +3,13 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "java",
+      "name": "SpringBootMongoApplication",
+      "request": "launch",
+      "mainClass": "com.example.mongo.SpringBootMongoApplication",
+      "projectName": "spring-boot-mongo"
+    },
+    {
       "name": "ng serve",
       "type": "chrome",
       "request": "launch",

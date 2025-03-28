@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { API_ENDPOINTS } from '../constants/api-endpoints';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -9,17 +10,19 @@ import { API_ENDPOINTS } from '../constants/api-endpoints';
 export class AuthService {
   private baseUrl = API_ENDPOINTS.BASE_URL;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
-  login(credentials: { email: string; password: string }): Observable<any> {
-    return this.http.post(`${this.baseUrl}/auth/login`, credentials);
-  }
-
-  logout() {
-    localStorage.removeItem('token');
+  login(user: any) {
+    return this.http.post(`${this.baseUrl}/login`, user);
   }
 
   isLoggedIn(): boolean {
     return !!localStorage.getItem('token');
   }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
+  }
+
 }

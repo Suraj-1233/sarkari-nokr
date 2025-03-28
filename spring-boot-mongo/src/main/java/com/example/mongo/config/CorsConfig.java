@@ -15,7 +15,7 @@ public class CorsConfig {
     public CorsFilter corsFilter() {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true); 
-        config.setAllowedOrigins(List.of("http://52.66.176.27:3000")); // Allow frontend domain
+        config.setAllowedOrigins(List.of("http://52.66.176.27:3000", "http://localhost:4200")); // Allow frontend domains
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS")); 
         config.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type")); 
 

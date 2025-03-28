@@ -11,25 +11,32 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent {
   loginForm: FormGroup;
   errorMessage: string = '';
+  isLoading: boolean = false;
 
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]]
     });
   }
 
-  onSubmit() {
-    if (this.loginForm.valid) {
-      this.authService.login(this.loginForm.value).subscribe({
-        next: (response) => {
-          localStorage.setItem('token', response.token);
-          this.router.navigate(['/dashboard']);
-        },
-        error: (error) => {
-          this.errorMessage = 'Invalid email or password!';
-        }
-      });
-    }
+  onSubmit(): void {
+    if (this.loginForm.invalid) return;
+    
+    this.isLoading = true;
+    this.errorMessage = '';
+    
+    this.authService.login(this.loginForm.value).subscribe({
+      next: (response:any) => {
+        localStorage.setItem('token', response.token);
+        this.router.navigate(['/crud-buttons']);
+      },
+      error: (error) => {
+        this.errorMessage = error.error?.message || 'Invalid email or password!';
+      },
+      complete: () => {
+        this.isLoading = false;
+      }
+    });
   }
 }

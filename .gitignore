@@ -30,7 +30,7 @@ yarn-error.log
 .history/*
 
 # Miscellaneous
-/.angular/cache
+/.angular/
 .sass-cache/
 /connect.lock
 /coverage
@@ -44,3 +44,6 @@ Thumbs.db
 =======
 node_modules
 >>>>>>> sarkari-serivce-fe/master
+
+
+fe/.angular/
