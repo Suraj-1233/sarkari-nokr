@@ -13,8 +13,9 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) {}
 
   login(user: any) {
-    return this.http.post(`${this.baseUrl}/login`, user);
+    return this.http.post(`${this.baseUrl}/auth/login`, user ,  {responseType: 'text' });
   }
+  
 
   isLoggedIn(): boolean {
     return !!localStorage.getItem('token');
