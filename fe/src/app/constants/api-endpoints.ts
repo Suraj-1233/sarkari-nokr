@@ -1,6 +1,6 @@
 export const API_ENDPOINTS = {
-    // BASE_URL: 'http://52.66.176.27:8080',
-    BASE_URL: 'http://localhost:8080',
+    BASE_URL: 'http://52.66.176.27:8080',
+    // BASE_URL: 'http://localhost:8080',
 
     RECORDS: {
       GET_ALL: '/records',
