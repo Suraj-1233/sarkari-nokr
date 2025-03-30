@@ -1,0 +1,24 @@
+
+
+
+<div class="container" *ngIf="coloredBoxes && coloredBoxes.length > 0 && middleLinks && middleLinks.length > 0">
+  <app-header></app-header>
+  <app-header-links  [coloredBoxes]="coloredBoxes" [middleLinks]="middleLinks"></app-header-links>
+
+  <div class="content">
+    <app-section *ngFor="let section of sections" [data]="section"></app-section>
+  </div>
+</div>
+<app-dynamic-content 
+  [data]="{
+    title: 'Why Should I Consider a Government Job?',
+    content: [
+      'In India, a Sarkari Naukri is highly sought-after. It\'s the ultimate career goal...',
+      'More than that, an Indian government job offers an opportunity to live a life of purpose.',
+      'It\'s a way for you to give back to your community.',
+      'According to the Centre for Monitoring Indian Economy Pvt. Ltd., the unemployment rate...',
+      'In addition, government jobs in India can be pretty lucrative...',
+      'Keep in mind that these jobs are also highly competitive with a complex application process!'
+    ]
+  }">
+</app-dynamic-content>
