@@ -4,7 +4,7 @@
 
 <div class="jobDetails">
   <p><strong>Name of Post:</strong> <span [innerHTML]="title"></span></p>
-  <p><strong>Post Date / Update:</strong> <span [innerHTML]="postDate"></span></p>
+  <p><strong>Post Date / Update:</strong> <span>{{ postDate | date: 'dd MMMM yyyy, h:mm a' }}</span></p>
   <p><strong>Short Information:</strong> <span [innerHTML]="shortInformation"></span></p>
 </div>
    <div class="jobPage">

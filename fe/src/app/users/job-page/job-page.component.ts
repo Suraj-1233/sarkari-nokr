@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-job-page',
@@ -11,12 +12,16 @@ export class JobPageComponent  implements OnInit  {
  title: any;
  postDate:any;
  shortInformation:any;
-data:any
+data:any;
+constructor(private sanitizer: DomSanitizer) {
+}
   ngOnInit(): void {
-    console.log(this.jobsData , " ths s ");
-    this.title=this.jobsData.title;
-    this.postDate=this.jobsData.postDate;
+    this.postDate=this.jobsData.postDate
     this.shortInformation=this.jobsData.shortInformation;
     this.data=this.jobsData.data;
+    this.shortInformation = this.sanitizer.bypassSecurityTrustHtml(this.shortInformation);
+    this.title= this.sanitizer.bypassSecurityTrustHtml(this.jobsData.nameOfPost);
+
+
   }
 }

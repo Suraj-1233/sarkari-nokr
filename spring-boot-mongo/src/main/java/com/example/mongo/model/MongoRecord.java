@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -18,8 +18,8 @@ public class MongoRecord {
     private String title;
     private String nameOfPost;  // `name_of_post` JSON field
     private String typeOfPost;  // `type_of_post` JSON field
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private LocalDate  postDate;  // `post_date` as Date type
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    private LocalDateTime postDate;  // `post_date` as Date type
     private String shortInformation;  // `short_information` JSON field
     private List<Map<String, Object>> data; // Flexible for nested JSON structures
 
@@ -27,7 +27,7 @@ public class MongoRecord {
     public MongoRecord() {}
 
     // Constructor with parameters
-    public MongoRecord(String title, String nameOfPost, String typeOfPost, LocalDate postDate, String shortInformation, List<Map<String, Object>> data) {
+    public MongoRecord(String title, String nameOfPost, String typeOfPost, LocalDateTime postDate, String shortInformation, List<Map<String, Object>> data) {
         this.title = title;
         this.nameOfPost = nameOfPost;
         this.typeOfPost = typeOfPost;
@@ -73,11 +73,11 @@ public class MongoRecord {
     }
 
     // Getter and Setter for postDate
-    public LocalDate getPostDate() {
+    public LocalDateTime getPostDate() {
         return postDate;
     }
 
-    public void setPostDate(LocalDate postDate) {
+    public void setPostDate(LocalDateTime postDate) {
         this.postDate = postDate;
     }
 

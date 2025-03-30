@@ -32,6 +32,8 @@ export class UsersComponent implements OnInit {
   }
   getGroupedData(data: any[]): any[] {
     const groupedData: { [key: string]: any } = {};
+   data.sort((a, b) => new Date(b.postDate).getTime() - new Date(a.postDate).getTime());
+     console.log(data," new Data")
     data.forEach((item, index) => {
       const type = item.typeOfPost;
       if (!groupedData[type]) {
@@ -54,7 +56,7 @@ export class UsersComponent implements OnInit {
     if (!data || data.length === 0) {
         return { firstPart: [], secondPart: [] };
     }
-
+    data.sort((a, b) => new Date(b.postDate).getTime() - new Date(a.postDate).getTime());
     // Extract only required fields, handle null/undefined nameOfPost
     const extractedData = data.map(item => ({
         id: item.id,

@@ -153,7 +153,7 @@ export class UpdatePostComponent implements OnInit {
           return {
             dataType: 'list',
             title: item.title,
-            data: item.items
+            data: item.data
           };
         } else {
           return {
@@ -192,6 +192,17 @@ export class UpdatePostComponent implements OnInit {
         alert('❌ Failed to update post. Please try again.');
       }
     });
+}
+onDateChange(event: any) {
+
+  if (this.postDate) {
+
+    this.postDate = new Date(this.postDate).toISOString().slice(0, 19); // Convert to ISO format
+    console.log("Formatted Post Date:", this.postDate);
+  } else {
+    console.log("Post Date is empty");
+  }
+  // You can call your API here if needed
 }
 
 }

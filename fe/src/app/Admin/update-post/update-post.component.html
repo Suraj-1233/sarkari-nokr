@@ -17,7 +17,7 @@
 
         <div class="mb-3">
             <label for="postDate">Post Date:</label>
-            <input type="date" [(ngModel)]="postDate" class="form-control">
+            <input type="datetime-local" [(ngModel)]="postDate"  (ngModelChange)="onDateChange($event)"  class="form-control">
         </div>
     </div>
 

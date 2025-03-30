@@ -47,3 +47,14 @@ node_modules
 
 
 fe/.angular/
+
+spring-boot-mongo/target/
+*.jar
+*.war
+*.ear
+spring-boot-mongo/target/
+spring-boot-mongo/target/classes/com/example/mongo/config/JwtFilter.class
+spring-boot-mongo/target/classes/com/example/mongo/config/JwtUtil.class
+spring-boot-mongo/target/classes/com/example/mongo/controller/RecordController.class
+spring-boot-mongo/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+spring-boot-mongo/target/spring-boot-mongo-1.0.0.jar.original
