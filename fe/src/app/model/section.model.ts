@@ -1,7 +1,7 @@
 export interface Section {
     title: string;
     type:string;
-    items: SectionItem[];
+    data: SectionItem[];
   }
   
   export interface SectionItem {

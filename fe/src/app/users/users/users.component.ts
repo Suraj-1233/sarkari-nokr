@@ -36,12 +36,11 @@ export class UsersComponent implements OnInit {
       const type = item.typeOfPost;
       if (!groupedData[type]) {
         groupedData[type] = {
-          title: type,
-          type: type,
-          items: []
+          type: type ,
+          data:[]
         };
       }
-      groupedData[type].items.push({
+      groupedData[type].data.push({
         text: `${item.title} `,
         id: `${item.id}`
       });

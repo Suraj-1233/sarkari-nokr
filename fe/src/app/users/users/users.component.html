@@ -5,7 +5,7 @@
   <app-header></app-header>
   <app-header-links  [coloredBoxes]="coloredBoxes" [middleLinks]="middleLinks"></app-header-links>
 
-  <div class="content">
+  <div class="content" *ngIf="sections && sections.length > 0">
     <app-section *ngFor="let section of sections" [data]="section"></app-section>
   </div>
 </div>

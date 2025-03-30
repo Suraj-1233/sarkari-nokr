@@ -36,6 +36,7 @@ export class UpdatePostComponent implements OnInit {
         this.postDate = data?.postDate;
         this.typeOfPost = data?.typeOfPost;
         this.shortInformation = data?.shortInformation;
+        this.nameOfPost=data?.nameOfPost;
         this.data = data?.data;
 
         
@@ -143,9 +144,10 @@ export class UpdatePostComponent implements OnInit {
   submitData() {
     const formattedData = {
       title: this.title,
-      name_of_post: this.nameOfPost,
-      post_date: this.postDate,
-      short_information: this.shortInformation,
+      typeOfPost: this.typeOfPost,
+      postDate: this.postDate,
+      shortInformation: this.shortInformation,
+      nameOfPost: this.nameOfPost,
       data: this.data.map(item => {
         if (item.dataType === 'list') {
           return {

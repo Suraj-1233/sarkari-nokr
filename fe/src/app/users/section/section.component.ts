@@ -13,13 +13,14 @@ export class SectionComponent {
   isExpanded = false;
 
   ngOnInit() {
-    this.visibleItems = this.data.items.slice(0, 9);
+    debugger
+    this.visibleItems = this.data.data.slice(0, 9);
   }
 
   toggleViewMore() {
   
     this.isExpanded = !this.isExpanded;
-    this.visibleItems = this.isExpanded ? this.data.items : this.data.items.slice(0, 5);
+    this.visibleItems = this.isExpanded ? this.data.data : this.data.data.slice(0, 5);
   }
 
   openInNewTab(url: string) {

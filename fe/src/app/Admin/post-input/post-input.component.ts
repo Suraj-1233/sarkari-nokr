@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { RecordService } from 'src/app/services/record.service';
 
 @Component({
   selector: 'app-post-input',
@@ -13,6 +15,7 @@ export class PostInputComponent {
   shortInformation: string = '';
 
   data: any[] = []; // Unified array for lists & tables
+  constructor(private route: ActivatedRoute, private recordService: RecordService) {}
 
   // Add a new List
   addList() {
@@ -110,6 +113,7 @@ export class PostInputComponent {
   // Submit final data
   submitData() {
     const formattedData = {
+      title: this.title,
       typeOfPost: this.typeOfPost,
       nameOfPost: this.nameOfPost,
       postDate: this.postDate,
@@ -137,7 +141,26 @@ export class PostInputComponent {
         }
       })
     };
+     
+    this.savePost(formattedData)
+
 
     console.log("Final Output:", JSON.stringify(formattedData, null, 2));
   }
+
+  savePost(formattedData:any) {
+   
+
+    this.recordService.createRecord(formattedData).subscribe({
+      next: (response) => {
+        console.log('✅ Post Updated Successfully:', response);
+        alert('✅ Post Updated Successfully!');
+      },
+      error: (err) => {
+        console.error('❌ Error updating post:', err);
+        alert('❌ Failed to update post. Please try again.');
+      }
+    });
+}
+
 }
