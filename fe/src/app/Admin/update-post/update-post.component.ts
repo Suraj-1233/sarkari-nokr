@@ -54,7 +54,7 @@ export class UpdatePostComponent implements OnInit {
       title: '',
       dataType: 'list',
       collapsed: true,
-      items: [],
+      data: [],
       newItem: ''
     });
   }
@@ -72,6 +72,7 @@ export class UpdatePostComponent implements OnInit {
 
   // Add an item to a List
   addListItem(index: number) {
+    debugger
     if (this.data[index].newItem.trim() !== '') {
       this.data[index].data.push(this.data[index].newItem);
       this.data[index].newItem = '';
