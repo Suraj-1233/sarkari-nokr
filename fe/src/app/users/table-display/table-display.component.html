@@ -1,29 +1,26 @@
 <table>
-    <thead>
-      <tr>
-        <th *ngFor="let header of headers">{{ header }}</th>
-      </tr>
-    </thead>
-  
-    <tbody>
-      <tr *ngFor="let row of data">
-        <td *ngFor="let header of headers">
-  
-        
-            <p *ngIf="!isList(row[header])">
-            <span [innerHTML]="row[header]"></span></p>
+  <thead>
+    <tr>
+      <!-- Render headers dynamically -->
+      <th *ngFor="let header of headers">{{ header }}</th>
+    </tr>
+  </thead>
 
-  
-          <!-- List Rendering -->
-          <app-list-display 
-            *ngIf="isList(row[header])" 
-            [listData]="row[header]"
-          ></app-list-display>
-  
+  <tbody>
+    <tr *ngFor="let row of data; let rowIndex = index">
+      <!-- Use ng-container to wrap ngIf and ngFor -->
+      <ng-container *ngFor="let header of headers; let colIndex = index">
+        <td *ngIf="shouldRenderCell(rowIndex, colIndex)" [rowSpan]="getRowSpan(rowIndex, colIndex)">
           
-  
+          <!-- Render actual content -->
+          <p *ngIf="!isList(row[header])">
+            <span [innerHTML]="row[header]"></span>
+          </p>
+
+          <!-- List Rendering -->
+          <app-list-display *ngIf="isList(row[header])" [listData]="row[header]"></app-list-display>
         </td>
-      </tr>
-    </tbody>
-  </table>
-  
+      </ng-container>
+    </tr>
+  </tbody>
+</table>

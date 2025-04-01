@@ -18,7 +18,55 @@ export class TableDisplayComponent implements OnInit {
 
 
   
+  shouldRenderCell(rowIndex: number, colIndex: number): boolean {
+    const header = this.headers[colIndex];
+    const currentValue = this.data[rowIndex][header];
 
+    // If current value is empty, hide cell
+    if (
+      currentValue === null ||
+      currentValue === undefined ||
+      currentValue === '' ||
+      (Array.isArray(currentValue) && currentValue.length === 0)
+    ) {
+      return false;
+    }
+    return true;
+  }
+  getRowSpan(rowIndex: number, colIndex: number): number {
+    const header = this.headers[colIndex];
+    const currentValue = this.data[rowIndex][header];
+
+    // If current value is empty, no row span needed
+    if (
+      currentValue === null ||
+      currentValue === undefined ||
+      currentValue === '' ||
+      (Array.isArray(currentValue) && currentValue.length === 0)
+    ) {
+      return 0;
+    }
+
+    let rowSpan = 1;
+
+    // Loop to check consecutive rows for merging
+    for (let i = rowIndex + 1; i < this.data.length; i++) {
+      const nextValue = this.data[i][header];
+      if (
+        nextValue === currentValue ||
+        nextValue === null ||
+        nextValue === undefined ||
+        nextValue === '' ||
+        (Array.isArray(nextValue) && nextValue.length === 0)
+      ) {
+        rowSpan++;
+      } else {
+        break;
+      }
+    }
+
+    return rowSpan;
+  }
   // Text with Link Parsing Utility
   parseTextWithLinks(text: string): string {
     return text.replace(
