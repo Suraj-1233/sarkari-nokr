@@ -5,7 +5,7 @@ services:
     build: ./fe
     container_name: frontend-app
     ports:
-      - "8081:80"
+      - "80:80"
     depends_on:
       - backend
     networks:
@@ -30,16 +30,6 @@ services:
       - "27017:27017"
     volumes:
       - mongo-data:/data/db
-    networks:
-      - app-network
-
-  nginx:
-    image: nginx:alpine
-    container_name: nginx-proxy
-    ports:
-      - "8082:80"
-    depends_on:
-      - frontend
     networks:
       - app-network
 
