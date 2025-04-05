@@ -1,0 +1,27 @@
+<table>
+  <thead>
+    <tr>
+      <!-- Render headers dynamically -->
+      <th *ngFor="let header of headers">{{ header }}</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let row of data; let rowIndex = index">
+      <!-- Use ng-container to wrap ngIf and ngFor -->
+      <ng-container *ngFor="let header of headers; let colIndex = index">
+        <td *ngIf="shouldRenderCell(rowIndex, colIndex)" [rowSpan]="getRowSpan(rowIndex, colIndex)">
+          
+          <!-- Render actual content -->
+          <p *ngIf="!isList(row[header])">
+            <span [innerHTML]="row[header]" [ngStyle]="{'font-family': 'Poppins'}"></span>
+          </p>
+          
+
+          <!-- List Rendering -->
+          <app-list-display *ngIf="isList(row[header])" [listData]="row[header]"></app-list-display>
+        </td>
+      </ng-container>
+    </tr>
+  </tbody>
+</table>

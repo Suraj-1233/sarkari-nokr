@@ -80,3 +80,4 @@ spring-boot-mongo/target/classes/com/example/mongo/model/User.class
 spring-boot-mongo/target/classes/com/example/mongo/repository/RecordRepository.class
 spring-boot-mongo/target/classes/com/example/mongo/repository/UserRepository.class
 spring-boot-mongo/target/classes/com/example/mongo/service/RecordService.class
+spring-boot-mongo/target/classes/application.properties

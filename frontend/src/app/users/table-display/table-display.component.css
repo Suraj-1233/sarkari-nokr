@@ -1,0 +1,48 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+      border: 2px solid #dcdcdc;
+      font-family: poppins;
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 10px 15px;
+    text-align: left;
+    font-family: poppins;
+
+    
+  }
+  
+  th {
+    background-color: #A60000;
+    color: #fff;
+    font-weight: bold;
+    font-family: poppins;
+
+  }
+  
+  td {
+    background-color: #f9f9f9;
+    font-family: poppins;
+  }
+  
+  a {
+    color: #1e88e5;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  body{
+    font-family: poppins;
+  }
+  p{
+  font-family: poppins;
+
+  }
