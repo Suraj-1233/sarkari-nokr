@@ -1,5 +1,5 @@
 export const API_ENDPOINTS = {
-  BASE_URL: 'https://servicesarkari.com/api',
+  BASE_URL: 'https://servicesarkari.com/',
 
     RECORDS: {
       GET_ALL: '/records',
