@@ -8,4 +8,4 @@ RUN npm run build --prod
 # Stage 2 - Serve Angular via NGINX
 FROM nginx:alpine
 COPY --from=build /app/dist/sarkari-service /usr/share/nginx/html
-COPY ../nginx/default.conf /etc/nginx//conf.d/servicesarkari.com.conf
+COPY ../nginx/default.conf /etc/nginx/conf.d/servicesarkari.com.conf
