@@ -13,6 +13,15 @@ import org.springframework.web.bind.annotation.*;
 import com.example.mongo.config.JwtUtil;
 import com.example.mongo.dto.LoginRequest;
 
+@CrossOrigin(
+    origins = {
+        "https://servicesarkari.com",
+        "http://13.233.121.16",
+        "http://localhost:4200"
+    },
+    allowCredentials = "true"
+)
+
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
