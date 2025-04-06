@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   frontend:
-    build: ./fe
+    build: ./frontend
     container_name: frontend-app
     depends_on:
       - backend
@@ -10,7 +10,7 @@ services:
       - app-network
 
   backend:
-    build: ./spring-boot-mongo
+    build: ./backend
     container_name: backend-app
     environment:
       - SPRING_DATA_MONGODB_URI=mongodb://mongo:27017/sara
