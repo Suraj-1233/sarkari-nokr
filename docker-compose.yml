@@ -27,24 +27,10 @@ services:
     networks:
       - app-network
 
-  nginx:
-    image: nginx:alpine
-    container_name: nginx
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./nginx/default.conf:/etc/nginx/conf.d/servicesarkari.com.conf
-      - /etc/letsencrypt:/etc/letsencrypt
-    depends_on:
-      - frontend
-      - backend
-    networks:
-      - app-network
-
 volumes:
   mongo-data:
 
 networks:
   app-network:
     driver: bridge
+
