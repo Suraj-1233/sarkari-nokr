@@ -1,6 +1,5 @@
 export const API_ENDPOINTS = {
-  BASE_URL: 'https://servicesarkari.com/api',
-
+  BASE_URL: 'https://www.servicesarkari.com/api',
     RECORDS: {
       GET_ALL: '/records',
       GET_BY_ID: (id: string) => `/records/${id}`,
