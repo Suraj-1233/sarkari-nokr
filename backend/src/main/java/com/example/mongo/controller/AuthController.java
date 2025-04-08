@@ -16,6 +16,7 @@ import com.example.mongo.dto.LoginRequest;
 @CrossOrigin(
     origins = {
         "https://servicesarkari.com",
+      "https://www.servicesarkari.com",
         "http://13.233.121.16",
         "http://localhost:4200"
     },
