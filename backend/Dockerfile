@@ -5,9 +5,8 @@ WORKDIR /app
 COPY pom.xml .
 COPY src ./src
 
-RUN mvn dependency:go-offline
-# Build the application
-RUN mvn clean package -DskipTests
+RUN mvn -B dependency:resolve
+RUN mvn clean package -DskipTests -DfinalName=app
 
 # Use OpenJDK for running the application
 FROM openjdk:17-jdk-slim
