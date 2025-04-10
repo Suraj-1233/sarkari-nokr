@@ -9,23 +9,31 @@ services:
     networks:
       - app-network
 
-  backend:
+    backend:
     build: ./backend
     container_name: backend-app
     environment:
       - SPRING_DATA_MONGODB_URI=mongodb://mongo:27017/sara
     depends_on:
-      - mongo
+      mongo:
+        condition: service_healthy
     networks:
       - app-network
 
-  mongo:
+
+   mongo:
     image: mongo:6.0
     container_name: mongodb
     volumes:
       - mongo-data:/data/db
     networks:
       - app-network
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
 
 volumes:
   mongo-data:
