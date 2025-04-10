@@ -41,6 +41,8 @@ private ObjectProvider<JwtFilter> jwtFilterProvider;
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, AuthenticationManager authManager) throws Exception {
     http
+        .cors() // ✅ Enable CORS support in Spring Security
+        .and()
         .csrf(csrf -> csrf.disable())
         .authorizeHttpRequests(auth -> auth
         .requestMatchers("/auth/login").permitAll()
