@@ -5,8 +5,7 @@ WORKDIR /app
 COPY pom.xml .
 COPY src ./src
 
-RUN mvn -B dependency:resolve
-RUN mvn clean package -DskipTests -DfinalName=app
+RUN mvn clean package -DskipTests
 
 # Use OpenJDK for running the application
 FROM openjdk:17-jdk-slim
