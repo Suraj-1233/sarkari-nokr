@@ -20,18 +20,16 @@ export class TableDisplayComponent implements OnInit {
   
   shouldRenderCell(rowIndex: number, colIndex: number): boolean {
     const header = this.headers[colIndex];
-    const currentValue = this.data[rowIndex][header];
-
-    // If current value is empty, hide cell
-    if (
-      currentValue === null ||
-      currentValue === undefined ||
-      currentValue === '' ||
-      (Array.isArray(currentValue) && currentValue.length === 0)
-    ) {
-      return false;
+    return !this.isDuplicate(rowIndex, colIndex, header);
+  }
+  
+  isDuplicate(rowIndex: number, colIndex: number, header: string): boolean {
+    for (let i = 0; i < rowIndex; i++) {
+      if (this.data[i][header] === this.data[rowIndex][header]) {
+        return true;
+      }
     }
-    return true;
+    return false;
   }
   getRowSpan(rowIndex: number, colIndex: number): number {
     const header = this.headers[colIndex];

@@ -41,7 +41,7 @@ export class HeaderComponent {
   
 
   openInNewTab(url: string) {
-    const fullUrl = window.location.origin + '/#' + url; 
+    const fullUrl = window.location.origin + url; 
     window.open(fullUrl, '_blank'); 
   }
 

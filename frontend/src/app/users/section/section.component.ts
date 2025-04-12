@@ -24,7 +24,7 @@ export class SectionComponent {
   }
 
   openInNewTab(url: string) {
-    const fullUrl = window.location.origin + '/#' + url; // Ensure hash-based routing
+    const fullUrl = window.location.origin  + url; // Ensure hash-based routing
     window.open(fullUrl, '_blank'); // Open in a new tab
   }
   
