@@ -1,5 +1,5 @@
 <div class="section">
-    <h2>{{ data.type }}</h2>
+    <p>{{ data.type }}</p>
     <ul>
       <li *ngFor="let item of visibleItems">
         <a style="cursor: pointer;" (click)="openInNewTab('/jobs/' + item.id)">

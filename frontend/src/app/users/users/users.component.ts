@@ -23,7 +23,7 @@ export class UsersComponent implements OnInit {
       const sortedData = this.sortDataInTwoParts(data);
       console.log(sortedData.firstPart);  
       console.log(sortedData.secondPart); 
-      debugger
+      
       this.coloredBoxes=sortedData.firstPart;
       this.middleLinks=sortedData.secondPart;
       this.sections=this.getGroupedData(this.records)

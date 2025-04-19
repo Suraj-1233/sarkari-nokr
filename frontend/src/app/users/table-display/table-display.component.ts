@@ -10,7 +10,7 @@ export class TableDisplayComponent implements OnInit {
   headers: string[] = [];
 
   ngOnInit() {
-    debugger
+    
     if (this.data.length > 0) {
       this.headers = Object.keys(this.data[0]);
     }

@@ -59,3 +59,15 @@
   body{
     font-family: poppins;
   }
+  .link-white {
+    color: white;
+    text-decoration: none;
+  }
+  .link-white:hover {
+    text-decoration: none;
+  }
+  * { 
+    font-family: poppins;
+  
+  }
+  
