@@ -13,7 +13,7 @@ export class SectionComponent {
   isExpanded = false;
 
   ngOnInit() {
-    debugger
+    
     this.visibleItems = this.data.data.slice(0, 9);
   }
 

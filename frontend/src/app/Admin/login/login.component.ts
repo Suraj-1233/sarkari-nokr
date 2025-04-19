@@ -28,12 +28,12 @@ export class LoginComponent {
     
     this.authService.login(this.loginForm.value).subscribe({
       next: (response:any) => {
-        debugger
+        
         localStorage.setItem('token', response);
         this.router.navigate(['/crud-buttons']);
       },
       error: (error) => {
-        debugger
+        
         this.errorMessage = error.error?.message || 'Invalid email or password!';
       },
       complete: () => {

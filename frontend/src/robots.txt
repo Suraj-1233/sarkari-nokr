@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /login
+Disallow: /crud-buttons
+Disallow: /create-post
+Disallow: /update-post
+Disallow: /admin

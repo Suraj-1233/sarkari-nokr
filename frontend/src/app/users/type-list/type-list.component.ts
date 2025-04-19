@@ -18,7 +18,7 @@ export class TypeListComponent {
 
 
   ngOnInit(): void {
-    debugger
+    
     this.route.params.subscribe((params) => {
       this.type = params['type']
     });
