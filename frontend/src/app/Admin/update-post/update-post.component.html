@@ -31,8 +31,12 @@
         <button (click)="addTable()" class="btn btn-success">Add Table</button>
     </div>
 
-    <div *ngFor="let item of data; let i = index" class="mb-3">
-        <div class="card">
+    <div cdkDropList [cdkDropListData]="data" (cdkDropListDropped)="dropBlock($event)" class="d-flex flex-column gap-3">
+        <div 
+          *ngFor="let item of data; let i = index" 
+          cdkDrag 
+          class="card"
+        >
             <div class="card-header d-flex justify-content-between align-items-center">
                 <button (click)="toggleCollapse(i)" class="btn btn-secondary btn-sm">{{ item.collapsed ? 'Expand' : 'Collapse' }}</button>
                 <button (click)="deleteItem(i)" class="btn btn-danger btn-sm">Delete</button>
@@ -48,12 +52,19 @@
                         <input type="text" [(ngModel)]="item.newItem" class="form-control me-2" placeholder="Enter List Item">
                         <button (click)="addListItem(i)" class="btn btn-success">Add Item</button>
                     </div>
-                    <ul>
-                        <li *ngFor="let listItem of item.data; let j = index">
-                            {{ listItem }}
-                            <button (click)="removeListItem(i, j)" class="btn btn-danger btn-sm ms-2">Remove</button>
+                    <ul cdkDropList [cdkDropListData]="item.data" (cdkDropListDropped)="dropListItem($event, i)">
+                        <li *ngFor="let listItem of item.data; let j = index" cdkDrag class="d-flex align-items-center justify-content-between mb-1">
+                          
+                          <ng-container >
+                            <span class="me-2">{{ listItem }}</span>
+                            <div>
+                              <button (click)="removeListItem(i, j)" class="btn btn-danger btn-sm me-1">Remove</button>
+                            </div>
+                          </ng-container>              
+              
                         </li>
-                    </ul>
+                      </ul>
+                      
                 </div>
 
                 <div *ngIf="item.dataType === 'table'">

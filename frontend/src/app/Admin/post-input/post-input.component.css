@@ -114,8 +114,11 @@ button.w-100:hover {
 
 /* List Styling */
 ul {
-  list-style-type: none;
+  list-style-type: disc;
   padding: 0;
+}
+ul li::marker {
+  color: black;               /* specifically targets the bullet color */
 }
 
 ul li {
