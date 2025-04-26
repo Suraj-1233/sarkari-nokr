@@ -14,7 +14,7 @@
   }
   
   ul {
-    list-style: disc;
+    list-style: none;
     padding: 0;
   }
   ul li::marker {
