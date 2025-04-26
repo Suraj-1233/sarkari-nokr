@@ -3,10 +3,12 @@
 
 <div class="container" *ngIf="coloredBoxes && coloredBoxes.length > 0 && middleLinks && middleLinks.length > 0">
   <app-header></app-header>
-  <app-header-links  [coloredBoxes]="coloredBoxes" [middleLinks]="middleLinks"></app-header-links>
+  <app-header-links [coloredBoxes]="coloredBoxes" [middleLinks]="middleLinks"></app-header-links>
 
-  <div class="content" *ngIf="sections && sections.length > 0">
-    <app-section *ngFor="let section of sections" [data]="section"></app-section>
+  <div  *ngIf="sections && sections.length > 0">
+    <div class="sections-wrapper">
+      <app-section *ngFor="let section of sections" [data]="section"></app-section>
+    </div>
   </div>
 </div>
 <app-dynamic-content 
@@ -21,4 +23,4 @@
       'Keep in mind that these jobs are also highly competitive with a complex application process!'
     ]
   }">
-</app-dynamic-content> 
+</app-dynamic-content>

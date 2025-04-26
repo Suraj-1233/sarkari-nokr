@@ -1,29 +1,28 @@
 .content-container {
-    border: 2px solid #e44d26;
-    background-color: #fff;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  .header {
-    background-color: #a6192e;
-    color: #fff;
-    font-weight: bold;
-    padding: 10px;
-    font-size: 24px;
-    margin-bottom: 15px;
-  }
-  
-  .content {
-    margin: 10px 0;
-    line-height: 1.6;
-    font-size: 16px;
-  }
-  body{
-    font-family: poppins;
-  }
-  * { 
-    font-family: poppins;
-  
-  }
-  
+  border: 2px solid #e44d26;
+  background-color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+.header {
+  background-color: #a6192e;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px;
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.content {
+  margin: 10px 0;
+  line-height: 1.6;
+  font-size: 16px;
+}
+body{
+  font-family: poppins;
+}
+* { 
+  font-family: poppins;
+
+}

@@ -1,65 +1,82 @@
 .section {
-    background-color: #fff;
-    border: 2px solid #dcdcdc;
-    padding: 15px;
-    border-radius: 8px;
-    width: 100%;
-  }
-  
-  p {
-    background-color: #a60000;
-    color: #fff;
-    margin: 0;
-    text-align: center;
-  }
-  
-  ul {
-    list-style: none;
-    padding: 0;
-  }
+  background-color: #fff;
+  border: 2px solid #dcdcdc;
+  padding: 2vw;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 20px auto; /* spacing between dynamic sections */
+  box-sizing: border-box;
+}
+
+.section p {
+  background-color: #a60000;
+  color: #fff;
+  margin: 0;
+  text-align: center;
+  padding: 1vw;
+  font-size: 1.2vw;
+  min-font-size: 14px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
   ul li::marker {
     color: black;               /* specifically targets the bullet color */
   }
-  li {
-    padding: 5px 0;
-    border-bottom: 1px solid #eaeaea;
-  }
-  
-  a {
-    color: #0066cc;
-    text-decoration: none;
-  }
-  
-  a:hover {
-    text-decoration: underline;
-  }
-  
-  .view-more {
-    display: inline-block;
-    padding: 10px 10px;
-    background-color: #a60000; /* Primary blue color */
-    color: white;
-    font-size: 16px;
-    text-align: center;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    text-transform: capitalize;
-    border: none;
-    outline: none;
-    user-select: none;
-    
+li {
+  padding: 0.7vw 0;
+  border-bottom: 1px solid #eaeaea;
+  font-size: 1.1vw;
+  min-font-size: 14px;
+}
+
+a {
+  color: #0066cc;
+  text-decoration: none;
+  word-break: break-word;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.view-more {
+  display: inline-block;
+  padding: 1vw 2vw;
+  background-color: #a60000;
+  color: white;
+  font-size: 1.1vw;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  text-transform: capitalize;
+  border: none;
+  outline: none;
+  user-select: none;
+  margin-top: 1vw;
+  min-font-size: 14px;
 }
 
 .view-more:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-    transform: scale(1.05);
+  background-color: #0056b3;
+  transform: scale(1.05);
 }
 
 .view-more:active {
-    background-color: #00408a; /* Even darker blue on click */
-    transform: scale(0.95);
+  background-color: #00408a;
+  transform: scale(0.95);
 }
-body{
-  font-family: poppins;
+
+body {
+  font-family: Poppins, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: Poppins, sans-serif;
 }
