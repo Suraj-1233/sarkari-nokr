@@ -22,6 +22,7 @@ import { JobsComponent } from './users/jobs/jobs.component';
 import { TypeListComponent } from './users/type-list/type-list.component';
 import { UpdatePostComponent } from './Admin/update-post/update-post.component';
 import { CrudButtonsComponent } from './Admin/crud-buttons/crud-buttons.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,7 @@ import { CrudButtonsComponent } from './Admin/crud-buttons/crud-buttons.componen
     ReactiveFormsModule,
     FormsModule, MatDialogModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,DragDropModule
 
   ],
   providers: [],

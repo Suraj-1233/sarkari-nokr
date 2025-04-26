@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RecordService } from '../../services/record.service';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-update-post',
@@ -13,6 +14,7 @@ export class UpdatePostComponent implements OnInit {
   postDate: string = '';
   typeOfPost: string = '';
   shortInformation: string = '';
+  listEditIndexes: { [key: number]: number | null } = {};
 
   data: any[] = []; // Unified array for lists & tables
   id: any;
@@ -39,7 +41,12 @@ export class UpdatePostComponent implements OnInit {
         this.nameOfPost=data?.nameOfPost;
         this.data = data?.data;
 
-        
+        this.data.forEach((item, index) => {
+          if (item.dataType === 'list') {
+            this.listEditIndexes[index] = null;
+          }
+        });
+  
         console.log('Fetched Post Data:', this.data);
       },
       error: (err: any) => {
@@ -81,7 +88,7 @@ export class UpdatePostComponent implements OnInit {
 
   // Remove an item from a List
   removeListItem(listIndex: number, itemIndex: number) {
-    this.data[listIndex].items.splice(itemIndex, 1);
+    this.data[listIndex].data.splice(itemIndex, 1);
   }
 
   // Add a column to the table
@@ -205,5 +212,15 @@ onDateChange(event: any) {
   }
   // You can call your API here if needed
 }
+
+
+dropListItem(event: CdkDragDrop<string[]>, listIndex: number) {
+  moveItemInArray(this.data[listIndex].data, event.previousIndex, event.currentIndex);
+}
+
+dropBlock(event: CdkDragDrop<any[]>) {
+  moveItemInArray(this.data, event.previousIndex, event.currentIndex);
+}
+
 
 }

@@ -14,10 +14,12 @@
   }
   
   ul {
-    list-style: none;
+    list-style: disc;
     padding: 0;
   }
-  
+  ul li::marker {
+    color: black;               /* specifically targets the bullet color */
+  }
   li {
     padding: 5px 0;
     border-bottom: 1px solid #eaeaea;

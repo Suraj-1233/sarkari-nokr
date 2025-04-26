@@ -1,6 +1,6 @@
 ul {
-    list-style-type:auto;
-    padding-left: 20px;
+  list-style-type: disc;
+      padding-left: 20px;
     margin: 0;
  /* Green text for list items */
     
@@ -12,4 +12,7 @@ ul {
   
   body{
     font-family: poppins;
+  }
+  ul li::marker {
+    color: black;               /* specifically targets the bullet color */
   }

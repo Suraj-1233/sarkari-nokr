@@ -15,8 +15,11 @@
   }
   
   ul {
-    list-style: none;
+    list-style: disc;
     padding: 0;
+  }
+  ul li::marker {
+    color: black;               /* specifically targets the bullet color */
   }
   
   li {
