@@ -1,12 +1,16 @@
-body {
-    
-    background-color: #f8f9fa;
+
+   /* === Base Reset & Centering === */
+   * {
+    font-family: Poppins, sans-serif;
+    box-sizing: border-box;
+  }
+  
+  html, body {
     margin: 0;
     padding: 0;
-  }
-  * { 
-    font-family: poppins;
-  
+    background-color: #f8f9fa;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    width: 100%;
   }
   
   header {
@@ -14,20 +18,79 @@ body {
     background-color: #222;
     color: #fff;
     font-size: 24px;
+    padding: 20px 10px;
+    width: 100%;
   }
   
   .container {
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
     align-items: center;
+    padding: 0 20px;
+    width: 100%;
+    box-sizing: border-box;
   }
   
   .content {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 52px;
     max-width: 1200px;
     width: 100%;
-    padding: 20px;
+    margin: 0 auto; /* Center horizontally */
+    padding: 20px 0;
   }
   
+  /* === Responsive Breakpoints === */
+  
+  /* Tablets */
+  @media (max-width: 1024px) {
+    .content {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+    }
+  
+    header {
+      font-size: 22px;
+    }
+  }
+  
+  /* Phones */
+  @media (max-width: 768px) {
+    .content {
+      grid-template-columns: repeat(4, 1fr);
+
+      gap: 24px;
+    }
+  
+    header {
+      font-size: 20px;
+    }
+  
+    .container {
+      padding: 0 16px;
+    }
+  }
+  
+  /* Small Phones */
+  @media (max-width: 480px) {
+    body {
+      font-size: 14px;
+    }
+  
+    header {
+      font-size: 18px;
+      padding: 12px;
+    }
+  
+    .content {
+      padding: 10px 0;
+      gap: 16px;
+    }
+  }
+  
+  .sections-wrapper{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
