@@ -19,15 +19,23 @@ export class UsersComponent implements OnInit {
   ngOnInit(): void {
     this.recordService.getAllRecords().subscribe(data => {
       this.records = data;
-      console.log(this.records);
       const sortedData = this.sortDataInTwoParts(data);
-      console.log(sortedData.firstPart);  
-      console.log(sortedData.secondPart); 
-      
       this.coloredBoxes=sortedData.firstPart;
       this.middleLinks=sortedData.secondPart;
-      this.sections=this.getGroupedData(this.records)
-      console.log(this.getGroupedData(this.records) )
+      this.sections=this.getGroupedData(this.records);
+      const priorityOrder = ["Result", "Admit Card", "Latest Jobs","Answer Key"];
+      const prioritySections = this.sections.filter(
+        (section: any) => priorityOrder.includes(section.type)
+      );
+  
+      const otherSections = this.sections.filter(
+        (section: any) => !priorityOrder.includes(section.type)
+      );
+  
+      this.sections = [...prioritySections, ...otherSections];
+  
+
+      
     });
   }
   getGroupedData(data: any[]): any[] {
