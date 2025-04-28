@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -23,6 +23,7 @@ import { TypeListComponent } from './users/type-list/type-list.component';
 import { UpdatePostComponent } from './Admin/update-post/update-post.component';
 import { CrudButtonsComponent } from './Admin/crud-buttons/crud-buttons.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,12 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     ReactiveFormsModule,
     FormsModule, MatDialogModule,
     HttpClientModule,
-    AppRoutingModule,DragDropModule
+    AppRoutingModule,DragDropModule, ServiceWorkerModule.register('ngsw-worker.js', {
+  enabled: !isDevMode(),
+  // Register the ServiceWorker as soon as the application is stable
+  // or after 30 seconds (whichever comes first).
+  registrationStrategy: 'registerWhenStable:30000'
+})
 
   ],
   providers: [],

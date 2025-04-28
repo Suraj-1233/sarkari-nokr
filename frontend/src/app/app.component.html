@@ -1,2 +1,9 @@
 
 <router-outlet></router-outlet>
+<!-- Install banner shown only if conditions are met -->
+<div *ngIf="showInstallButton" class="install-banner">
+    <p>Install our app for a faster and better experience!</p>
+    <button (click)="installApp()">Install App</button>
+    <button (click)="dismissInstallPrompt()">No Thanks</button>
+  </div>
+  
