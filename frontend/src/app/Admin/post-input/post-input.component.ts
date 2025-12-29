@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RecordService } from 'src/app/services/record.service';
+import { DialogService } from 'src/app/services/dialog.service';
 
 @Component({
   selector: 'app-post-input',
@@ -15,7 +16,11 @@ export class PostInputComponent {
   shortInformation: string = '';
 
   data: any[] = []; // Unified array for lists & tables
-  constructor(private route: ActivatedRoute, private recordService: RecordService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private recordService: RecordService,
+    private dialogService: DialogService
+  ) {}
 
   // Add a new List
   addList() {
@@ -105,9 +110,11 @@ export class PostInputComponent {
 
   // Delete List or Table
   deleteItem(index: number) {
-    if (confirm('Are you sure you want to delete this item?')) {
-      this.data.splice(index, 1);
-    }
+    this.dialogService.showConfirm('Are you sure you want to delete this item?', 'Confirm Delete').subscribe(confirmed => {
+      if (confirmed) {
+        this.data.splice(index, 1);
+      }
+    });
   }
 
   // Submit final data
@@ -149,16 +156,14 @@ export class PostInputComponent {
   }
 
   savePost(formattedData:any) {
-   
-
     this.recordService.createRecord(formattedData).subscribe({
       next: (response) => {
-        console.log('✅ Post Updated Successfully:', response);
-        alert('✅ Post Updated Successfully!');
+        console.log('✅ Post Created Successfully:', response);
+        this.dialogService.showSuccess('Post created successfully!', 'Success');
       },
       error: (err) => {
-        console.error('❌ Error updating post:', err);
-        alert('❌ Failed to update post. Please try again.');
+        console.error('❌ Error creating post:', err);
+        this.dialogService.showError('Failed to create post. Please try again.', 'Error');
       }
     });
 }

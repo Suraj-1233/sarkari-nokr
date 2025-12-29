@@ -1,6 +1,6 @@
 .job-page {
   font-family: poppins;
-    border: 2px solid #ff4d4d;
+    border: 2px solid #9d2235;
     padding: 20px;
     max-width: 800px;
     margin: 0 auto;
@@ -8,7 +8,7 @@
   
   .title, .subtitle, .notice, .website {
     text-align: center;
-    color: #9b002f;
+    color: #9d2235;
     font-weight: bold;
   }
   
@@ -41,25 +41,28 @@
   }
   
   .links a {
-    background-color: #4CAF50;
+    background: linear-gradient(135deg, #9d2235 0%, #c92a42 100%);
     color: #fff;
     padding: 10px 20px;
     margin: 5px 0;
     text-decoration: none;
     border-radius: 5px;
+    transition: all 0.3s ease;
   }
   
   .links a:hover {
-    background-color: #45a049;
+    background: linear-gradient(135deg, #8b1e2f 0%, #b8253a 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(157, 34, 53, 0.3);
   }
   
 
 .jobPage {
-    margin: 120px;
+    margin: 20px auto;
     border: 2px solid black;
     padding: 20px;
-    /* text-align: center; */
-
+    max-width: 1200px;
+    box-sizing: border-box;
   }
   .content-container {
    
@@ -71,9 +74,11 @@
   padding: 15px;
   margin-bottom: 20px !important;
   font-family: Arial, sans-serif;
-  width: 60%;
-  margin: 50px auto; 
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto; 
   text-align: left;
+  box-sizing: border-box;
   
 }
 
@@ -85,7 +90,7 @@
 }
 
 .jobDetails strong {
-  color: #d60000; /* Dark red color for labels */
+  color: #9d2235; /* Dark red color for labels */
   font-size: 17px;
 }
 
@@ -101,7 +106,7 @@
 .header {
   font-size: 18px;
   font-weight: bold;
-  color: #9b002f; /* Blue for section headers */
+  color: #9d2235; /* Red for section headers */
   margin-bottom: 10px;
   padding-bottom: 5px;
   justify-content: center;
@@ -115,4 +120,58 @@ hr {
   height: 1px;
   background-color: #ddd;
   margin: 15px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .jobPage {
+    margin: 10px;
+    padding: 15px;
+    border-width: 1px;
+  }
+
+  .jobDetails {
+    padding: 12px;
+    margin: 15px 10px;
+  }
+
+  .jobDetails p {
+    font-size: 14px;
+  }
+
+  .jobDetails strong {
+    font-size: 15px;
+  }
+
+  .header {
+    font-size: 16px;
+    padding-bottom: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .jobPage {
+    margin: 5px;
+    padding: 10px;
+  }
+
+  .jobDetails {
+    padding: 10px;
+    margin: 10px 5px;
+  }
+
+  .jobDetails p {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .jobDetails strong {
+    font-size: 14px;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .header {
+    font-size: 14px;
+  }
 }

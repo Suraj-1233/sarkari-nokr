@@ -1,89 +1,188 @@
 /* Center the content */
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 40px 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+/* Header styling */
+h2 {
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: #333;
+  font-weight: 600;
+}
+
+/* Input field styling */
+.form-group {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 25px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 2px solid #e0e0e0;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.form-control:focus {
+  border-color: #9d2235;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(157, 34, 53, 0.1);
+}
+
+/* Button styling */
+button {
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Loading Spinner */
+.spinner-small {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 0.8s linear infinite;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
-  
-  /* Header styling */
+}
+
+/* Create Button */
+.btn-primary {
+  background: linear-gradient(135deg, #9d2235 0%, #c92a42 100%);
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #8b1e2f 0%, #b8253a 100%);
+}
+
+/* Update & Delete Button Row */
+.button-row {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Update Button */
+.btn-warning {
+  background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+  color: white;
+}
+
+.btn-warning:hover:not(:disabled) {
+  background: linear-gradient(135deg, #e0a800 0%, #e68900 100%);
+}
+
+/* Delete Button */
+.btn-danger {
+  background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+  color: white;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: linear-gradient(135deg, #c82333 0%, #bd2130 100%);
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f8f9fa;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 30px 15px;
+    margin: 10px;
+  }
+
   h2 {
     font-size: 24px;
-    margin-bottom: 20px;
-    color: #333;
   }
-  
-  /* Input field styling */
+
   .form-group {
+    max-width: 100%;
+  }
+
+  .button-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  button {
     width: 100%;
-    max-width: 400px;
+    padding: 12px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 20px 10px;
+    margin: 5px;
+  }
+
+  h2 {
+    font-size: 20px;
     margin-bottom: 20px;
   }
-  
-  .form-control {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    transition: border-color 0.3s ease;
+
+  .form-group {
+    margin-bottom: 20px;
   }
-  
-  .form-control:focus {
-    border-color: #007bff;
-    outline: none;
-  }
-  
-  /* Button styling */
+
   button {
-    padding: 12px 20px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.3s ease, background-color 0.3s ease;
+    padding: 10px 16px;
+    font-size: 14px;
   }
-  
-  /* Create Button */
-  .btn-primary {
-    background-color: #007bff;
-    color: white;
-  }
-  
-  .btn-primary:hover {
-    background-color: #0056b3;
-    transform: scale(1.05);
-  }
-  
-  /* Update & Delete Button Row */
-  .button-row {
-    display: flex;
-    gap: 10px;  /* Space between buttons */
-    margin-top: 10px;
-  }
-  
-  /* Update Button */
-  .btn-warning {
-    background-color: #ffc107;
-    color: white;
-  }
-  
-  .btn-warning:hover {
-    background-color: #e0a800;
-    transform: scale(1.05);
-  }
-  
-  /* Delete Button */
-  .btn-danger {
-    background-color: #dc3545;
-    color: white;
-  }
-  
-  .btn-danger:hover {
-    background-color: #c82333;
-    transform: scale(1.05);
-  }
-  body{
-    font-family: poppins;
-  }
+}

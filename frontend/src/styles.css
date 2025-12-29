@@ -1,5 +1,162 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
-html, body { height: 100%; }
-body { margin: 0; font-family: poppins}
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+html, body { 
+  height: 100%; 
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body { 
+  margin: 0; 
+  font-family: 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(to bottom, #f8f9fa 0%, #e9ecef 100%);
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Better focus styles for accessibility */
+*:focus {
+  outline: 2px solid #9d2235;
+  outline-offset: 2px;
+}
+
+button:focus,
+a:focus {
+  outline: 2px solid #9d2235;
+  outline-offset: 2px;
+}
+
+/* Remove default button styles */
+button {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Better link styles */
+a {
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+/* Loading spinner utility */
+.spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #9d2235 0%, #c92a42 100%);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #8b1e2f 0%, #b8253a 100%);
+}
+
+/* Selection Color */
+::selection {
+  background: #9d2235;
+  color: white;
+}
+
+::-moz-selection {
+  background: #9d2235;
+  color: white;
+}
+
+/* Responsive Utilities */
+@media (max-width: 1024px) {
+  body {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 13px;
+  }
+}
+
+/* Ensure images are responsive */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Responsive containers */
+.container-responsive {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+/* Prevent horizontal scroll */
+* {
+  max-width: 100%;
+}
+
+/* Responsive utilities */
+@media (max-width: 768px) {
+  .container-responsive {
+    padding: 0 15px;
+  }
+  
+  /* Ensure no element causes horizontal scroll */
+  body, html {
+    overflow-x: hidden;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .container-responsive {
+    padding: 0 10px;
+  }
+  
+  /* Ensure no element causes horizontal scroll on mobile */
+  body, html {
+    overflow-x: hidden;
+    width: 100%;
+  }
+}

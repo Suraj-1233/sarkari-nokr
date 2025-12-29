@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RecordService } from 'src/app/services/record.service';
 
@@ -7,46 +7,53 @@ import { RecordService } from 'src/app/services/record.service';
   templateUrl: './type-list.component.html',
   styleUrls: ['./type-list.component.css']
 })
-export class TypeListComponent {
-
-  visibleItems: any;
+export class TypeListComponent implements OnInit {
+  visibleItems: any = [];
   isExpanded = false;
-  type: string = ''
+  type: string = '';
   typeData: any;
-  title: any
-  constructor(private route: ActivatedRoute, private recordService: RecordService) { }
+  title: any = '';
+  isLoading: boolean = true;
+  errorMessage: string = '';
 
+  constructor(
+    private route: ActivatedRoute,
+    private recordService: RecordService
+  ) {}
 
   ngOnInit(): void {
-    
     this.route.params.subscribe((params) => {
-      this.type = params['type']
+      this.type = params['type'];
+      if (this.type) {
+        this.getDataByType(this.type);
+      }
     });
-    if (this.type) {
-      this.getDataByType(this.type);  // Call API after id is assigned
-    }
   }
 
   getDataByType(type: string) {
+    this.isLoading = true;
+    this.errorMessage = '';
+    
     this.recordService.getRecordsByType(type).subscribe({
       next: (data) => {
         this.typeData = this.getGroupedData(data);
-        console.log('Grouped Data:', this.typeData);
 
         if (Array.isArray(this.typeData) && this.typeData.length > 0) {
           this.visibleItems = this.typeData[0].items;
           this.title = this.typeData[0].title;
         } else {
           this.visibleItems = [];
-          this.title = '';
+          this.title = type || 'No Title';
         }
 
-        console.log('visibleItems:', this.visibleItems);
-        console.log('title:', this.title);
-
+        this.isLoading = false;
       },
       error: (err) => {
         console.error("Error fetching data: ", err);
+        this.errorMessage = 'Failed to load data. Please try again later.';
+        this.isLoading = false;
+        this.visibleItems = [];
+        this.title = '';
       }
     });
   }

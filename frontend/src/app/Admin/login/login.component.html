@@ -1,22 +1,55 @@
+<div class="login-wrapper">
 <div class="login-container">
-    <h2>Login</h2>
+    <div class="login-header">
+      <h2>Admin Login</h2>
+      <p>Enter your credentials to access the admin panel</p>
+    </div>
     
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <label for="email">Email</label>
-        <input id="email" type="text" formControlName="username" required> 
+        <label for="username">Username</label>
+        <input 
+          id="username" 
+          type="text" 
+          formControlName="username" 
+          placeholder="Enter your username"
+          [class.error-input]="loginForm.get('username')?.invalid && loginForm.get('username')?.touched"
+          required> 
+        <span *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched" class="error-text">
+          Username is required!
+        </span>
       </div>
   
       <div class="form-group">
         <label for="password">Password</label>
-        <input id="password" type="password" formControlName="password" required>
-        <span *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+        <input 
+          id="password" 
+          type="password" 
+          formControlName="password" 
+          placeholder="Enter your password"
+          [class.error-input]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+          required>
+        <span *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error-text">
           Password is required!
         </span>
       </div>
   
-      <button type="submit" [disabled]="loginForm.invalid">Login</button>
-      <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+      <div *ngIf="errorMessage" class="error-message">
+        <span class="error-icon">⚠️</span>
+        {{ errorMessage }}
+      </div>
+
+      <button 
+        type="submit" 
+        class="login-button"
+        [disabled]="loginForm.invalid || isLoading">
+        <span *ngIf="!isLoading">Login</span>
+        <span *ngIf="isLoading" class="loading-text">
+          <span class="spinner"></span>
+          Logging in...
+        </span>
+      </button>
     </form>
+  </div>
   </div>
   

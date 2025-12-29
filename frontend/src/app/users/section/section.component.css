@@ -1,82 +1,250 @@
+/* ============================================
+   FIXED: Card Structure with Consistent Height
+   ============================================ */
 .section {
-  background-color: #fff;
-  border: 2px solid #dcdcdc;
-  padding: 2vw;
-  border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 0;
   width: 100%;
-  max-width: 1200px;
-  margin: 0 auto 20px auto; /* spacing between dynamic sections */
+  margin: 0;
   box-sizing: border-box;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 320px;
 }
 
+.section:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-color: #d1d5db;
+  transform: translateY(-1px);
+}
+
+/* ============================================
+   FIXED: Header - Primary (Red) - Clear Hierarchy
+   ============================================ */
 .section p {
-  background-color: #a60000;
+  background: linear-gradient(135deg, #9d2235 0%, #c92a42 100%);
   color: #fff;
   margin: 0;
   text-align: center;
-  padding: 1vw;
-  font-size: 1.2vw;
-  min-font-size: 14px;
+  padding: 14px 16px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  position: relative;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  line-height: 1.3;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
+/* ============================================
+   FIXED: Content Area - Balanced Spacing
+   ============================================ */
 ul {
   list-style: none;
   padding: 0;
-  margin-top: 10px;
-}
-  ul li::marker {
-    color: black;               /* specifically targets the bullet color */
-  }
-li {
-  padding: 0.7vw 0;
-  border-bottom: 1px solid #eaeaea;
-  font-size: 1.1vw;
-  min-font-size: 14px;
+  margin: 0;
+  background: white;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 200px;
+  padding: 8px 0;
 }
 
+li {
+  padding: 10px 16px 10px 42px;
+  border-bottom: 1px solid #f3f4f6;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+  position: relative;
+  flex-shrink: 0;
+}
+
+li:last-child {
+  border-bottom: none;
+}
+
+li::before {
+  content: '▸';
+  position: absolute;
+  left: 18px;
+  color: #9d2235;
+  font-size: 12px;
+  font-weight: 600;
+  transition: transform 0.2s ease;
+}
+
+/* ============================================
+   FIXED: Typography Hierarchy
+   ============================================ */
 a {
-  color: #0066cc;
+  color: #374151;
   text-decoration: none;
   word-break: break-word;
+  display: block;
+  font-weight: 400;
+  line-height: 1.5;
+  transition: color 0.2s ease;
+  font-size: 14px;
 }
 
 a:hover {
-  text-decoration: underline;
+  color: #9d2235;
+  text-decoration: none;
 }
 
+li:hover {
+  background-color: #f9fafb;
+}
+
+li:hover::before {
+  transform: translateX(2px);
+  color: #c92a42;
+}
+
+/* ============================================
+   FIXED: Footer - Secondary (Gray) - Not Competing
+   ============================================ */
 .view-more {
-  display: inline-block;
-  padding: 1vw 2vw;
-  background-color: #a60000;
-  color: white;
-  font-size: 1.1vw;
+  display: block;
+  width: 100%;
+  padding: 10px 16px;
+  background: #f9fafb;
+  color: #6b7280;
+  font-size: 13px;
+  font-weight: 500;
   text-align: center;
-  border-radius: 5px;
+  border-top: 1px solid #e5e7eb;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  text-transform: capitalize;
+  transition: all 0.2s ease;
+  text-transform: none;
+  letter-spacing: 0;
   border: none;
+  border-top: 1px solid #e5e7eb;
   outline: none;
   user-select: none;
-  margin-top: 1vw;
-  min-font-size: 14px;
+  margin-top: auto;
+  flex-shrink: 0;
 }
 
 .view-more:hover {
-  background-color: #0056b3;
-  transform: scale(1.05);
+  background: #f3f4f6;
+  color: #9d2235;
 }
 
 .view-more:active {
-  background-color: #00408a;
-  transform: scale(0.95);
+  background: #e5e7eb;
 }
 
-body {
-  font-family: Poppins, sans-serif;
+/* ============================================
+   FIXED: Responsive Design - Consistent Heights
+   ============================================ */
+@media (max-width: 1024px) {
+  .section {
+    min-height: 300px;
+  }
+
+  .section p {
+    font-size: 15px;
+    padding: 12px 14px;
+    min-height: 44px;
+  }
+
+  ul {
+    min-height: 180px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    min-height: 280px;
+    border-radius: 10px;
+  }
+
+  .section p {
+    font-size: 14px;
+    padding: 12px 14px;
+    min-height: 42px;
+  }
+
+  ul {
+    min-height: 160px;
+    padding: 6px 0;
+  }
+
+  li {
+    padding: 9px 14px 9px 38px;
+    font-size: 13px;
+  }
+
+  li::before {
+    left: 16px;
+    font-size: 11px;
+  }
+
+  a {
+    font-size: 13px;
+  }
+
+  .view-more {
+    font-size: 12px;
+    padding: 9px 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    min-height: 260px;
+    border-radius: 8px;
+  }
+
+  .section p {
+    font-size: 13px;
+    padding: 10px 12px;
+    min-height: 40px;
+  }
+
+  ul {
+    min-height: 140px;
+    padding: 4px 0;
+  }
+
+  li {
+    padding: 8px 12px 8px 36px;
+    font-size: 12px;
+  }
+
+  li::before {
+    left: 14px;
+    font-size: 10px;
+  }
+
+  a {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .view-more {
+    font-size: 11px;
+    padding: 8px 12px;
+  }
 }
 
 * {
   box-sizing: border-box;
-  font-family: Poppins, sans-serif;
+  font-family: 'Poppins', sans-serif;
 }

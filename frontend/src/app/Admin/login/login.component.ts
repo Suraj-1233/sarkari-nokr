@@ -27,17 +27,22 @@ export class LoginComponent {
     this.errorMessage = '';
     
     this.authService.login(this.loginForm.value).subscribe({
-      next: (response:any) => {
-        
+      next: (response: any) => {
+        if (response && typeof response === 'string') {
         localStorage.setItem('token', response);
         this.router.navigate(['/crud-buttons']);
+        } else {
+          this.errorMessage = 'Invalid response from server';
+        }
+        this.isLoading = false;
       },
       error: (error) => {
-        
-        this.errorMessage = error.error?.message || 'Invalid email or password!';
-      },
-      complete: () => {
         this.isLoading = false;
+        if (error.error && typeof error.error === 'string') {
+          this.errorMessage = error.error;
+        } else {
+          this.errorMessage = error.error?.message || error.message || 'Invalid username or password!';
+        }
       }
     });
   }

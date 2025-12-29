@@ -1,23 +1,33 @@
 package com.example.mongo.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Configuration
 public class CorsConfig {
 
+    @Value("${spring.web.cors.allowed-origins}")
+    private String allowedOrigins;
+
     @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true); 
-        config.setAllowedOrigins(List.of("https://www.servicesarkari.com", "http://localhost:4200","https://sarkari-nokr.vercel.app")); // Allow frontend domains
-        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS")); 
-        config.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type")); 
+        
+        // Parse comma-separated origins from properties
+        List<String> origins = Arrays.asList(allowedOrigins.split(","));
+        config.setAllowedOrigins(origins);
+        
+        config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        config.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type", "X-Requested-With"));
+        config.setMaxAge(3600L); // Cache preflight requests for 1 hour
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);

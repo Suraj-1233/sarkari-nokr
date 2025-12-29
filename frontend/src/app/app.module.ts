@@ -12,10 +12,12 @@ import { ListDisplayComponent } from './users/list-display/list-display.componen
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PostInputComponent } from './Admin/post-input/post-input.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { HttpClientModule } from '@angular/common/http';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RecordService } from './services/record.service';
 import { LoginComponent } from './Admin/login/login.component';
-  
+import { AuthInterceptor } from './services/http.interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { UsersComponent } from './users/users/users.component';
 import { JobsComponent } from './users/jobs/jobs.component';
@@ -23,6 +25,8 @@ import { TypeListComponent } from './users/type-list/type-list.component';
 import { UpdatePostComponent } from './Admin/update-post/update-post.component';
 import { CrudButtonsComponent } from './Admin/crud-buttons/crud-buttons.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { AlertDialogComponent } from './shared/dialogs/alert-dialog/alert-dialog.component';
+import { ConfirmDialogComponent } from './shared/dialogs/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -41,16 +45,28 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     TypeListComponent,
     UpdatePostComponent,
     CrudButtonsComponent,
+    AlertDialogComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    FormsModule, MatDialogModule,
+    FormsModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatIconModule,
     HttpClientModule,
-    AppRoutingModule,DragDropModule
+    AppRoutingModule,
+    DragDropModule
 
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

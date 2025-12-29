@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RecordService } from '../../services/record.service';
+import { DialogService } from '../../services/dialog.service';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
@@ -20,7 +21,11 @@ export class UpdatePostComponent implements OnInit {
   id: any;
 
 
-  constructor(private route: ActivatedRoute, private recordService: RecordService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private recordService: RecordService,
+    private dialogService: DialogService
+  ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -144,9 +149,11 @@ export class UpdatePostComponent implements OnInit {
 
   // Delete List or Table
   deleteItem(index: number) {
-    if (confirm('Are you sure you want to delete this item?')) {
-      this.data.splice(index, 1);
-    }
+    this.dialogService.showConfirm('Are you sure you want to delete this item?', 'Confirm Delete').subscribe(confirmed => {
+      if (confirmed) {
+        this.data.splice(index, 1);
+      }
+    });
   }
 
   submitData() {
@@ -186,18 +193,18 @@ export class UpdatePostComponent implements OnInit {
   }
   updatePost(formattedData:any) {
     if (!this.id) {
-      alert('❌ Invalid Post ID. Cannot update.');
+      this.dialogService.showError('Invalid Post ID. Cannot update.', 'Error');
       return;
     }
 
     this.recordService.updateRecord(this.id, formattedData).subscribe({
       next: (response) => {
         console.log('✅ Post Updated Successfully:', response);
-        alert('✅ Post Updated Successfully!');
+        this.dialogService.showSuccess('Post updated successfully!', 'Success');
       },
       error: (err) => {
         console.error('❌ Error updating post:', err);
-        alert('❌ Failed to update post. Please try again.');
+        this.dialogService.showError('Failed to update post. Please try again.', 'Error');
       }
     });
 }

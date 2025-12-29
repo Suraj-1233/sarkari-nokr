@@ -1,6 +1,6 @@
 <header class="header">
   <div class="header-top">
-    <img src="assets/images/logo2.jpeg" alt="Sarkari Serivce Logo" class="logo" />
+    <img src="assets/images/logo2.jpeg" alt="Sarkari Service Logo" class="logo" />
     <div class="title">
       <h1>Service Sarkari</h1>
       <p>
@@ -10,11 +10,4 @@
       </p>
           </div>
   </div>
-
-  <nav class="nav-bar">
-    <a style="cursor: pointer;" href="" class="nav-item">Home</a>
-    <a style="cursor: pointer;"  *ngFor="let item of records" (click)="openInNewTab('/type/' + item.typeOfPost)" class="nav-item">
-      {{ item.typeOfPost }}
-    </a>
-  </nav>
 </header>

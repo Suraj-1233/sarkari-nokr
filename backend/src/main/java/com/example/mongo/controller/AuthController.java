@@ -9,20 +9,10 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 import com.example.mongo.config.JwtUtil;
 import com.example.mongo.dto.LoginRequest;
-
-@CrossOrigin(
-    origins = {
-        "https://servicesarkari.com",
-      "https://www.servicesarkari.com",
-        "http://13.233.121.16",
-        "http://localhost:4200",
-       "https://sarkari-nokr.vercel.app"
-    },
-    allowCredentials = "true"
-)
 
 @RestController
 @RequestMapping("/auth")
@@ -39,7 +29,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest request) {
+    public ResponseEntity<String> login(@Valid @RequestBody LoginRequest request) {
     try {
         authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword())

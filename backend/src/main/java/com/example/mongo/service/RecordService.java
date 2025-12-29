@@ -52,6 +52,9 @@ public class RecordService {
 
     // Delete a record
     public void deleteRecord(String id) {
+        if (!recordRepository.existsById(id)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Record not found with ID: " + id);
+        }
         recordRepository.deleteById(id);
     }
 

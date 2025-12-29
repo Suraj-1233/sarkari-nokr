@@ -3,14 +3,20 @@ package com.example.mongo.config;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
+import javax.crypto.SecretKey;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.function.Function;
 
-@Component  // ✅ This makes JwtUtil a Spring Bean
+@Component
 public class JwtUtil {
-    private final String SECRET_KEY = "2b4KDty4Cn4I5xX8wX7C9G0xXUJ0HkM4LOu1oDzO8WI=";  // 🔑 Use a strong key
+    
+    @Value("${jwt.secret}")
+    private String SECRET_KEY;
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
@@ -26,8 +32,10 @@ public class JwtUtil {
     }
 
     private Claims extractAllClaims(String token) {
-        return Jwts.parser()
-                .setSigningKey(SECRET_KEY)
+        SecretKey key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes(StandardCharsets.UTF_8));
+        return Jwts.parserBuilder()
+                .setSigningKey(key)
+                .build()
                 .parseClaimsJws(token)
                 .getBody();
     }
@@ -42,11 +50,12 @@ public class JwtUtil {
     }
 
     public String generateToken(String username) {
+        SecretKey key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes(StandardCharsets.UTF_8));
         return Jwts.builder()
                 .setSubject(username)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10)) // 10 hours expiry
-                .signWith(SignatureAlgorithm.HS256, SECRET_KEY)
+                .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
     }
 }
