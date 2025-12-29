@@ -10,7 +10,9 @@ import com.example.mongo.model.MongoRecord;
 import com.example.mongo.service.RecordService;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/records")
@@ -57,13 +59,23 @@ public class RecordController {
 
     // ✅ Delete a record
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteRecord(@PathVariable String id) {
+    public ResponseEntity<Map<String, String>> deleteRecord(@PathVariable String id) {
         try {
-        recordService.deleteRecord(id);
-        return ResponseEntity.ok("Record deleted successfully!");
+            recordService.deleteRecord(id);
+            Map<String, String> response = new HashMap<>();
+            response.put("message", "Record deleted successfully!");
+            response.put("id", id);
+            return ResponseEntity.ok(response);
+        } catch (org.springframework.web.server.ResponseStatusException e) {
+            Map<String, String> errorResponse = new HashMap<>();
+            errorResponse.put("message", "Record not found with ID: " + id);
+            errorResponse.put("error", e.getReason());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("Record not found with ID: " + id);
+            Map<String, String> errorResponse = new HashMap<>();
+            errorResponse.put("message", "Failed to delete record: " + e.getMessage());
+            errorResponse.put("error", "Internal server error");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
         }
     }
      @GetMapping("/by-date")

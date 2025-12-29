@@ -37,6 +37,7 @@ export class RecordService {
   }
 
   // Delete a record (Auth header added by interceptor)
+  // Backend returns JSON response with message and id
   deleteRecord(id: string): Observable<any> {
     return this.http.delete(`${this.baseUrl}${API_ENDPOINTS.RECORDS.DELETE(id)}`);
   }

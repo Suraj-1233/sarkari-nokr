@@ -40,8 +40,8 @@ label {
 
 .form-control:focus {
   outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  border-color: #9d2235;
+  box-shadow: 0 0 0 3px rgba(157, 34, 53, 0.1);
 }
 
 input[type="date"] {
@@ -153,8 +153,15 @@ ul li {
 }
 
 /* Table Styling */
+.table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 15px;
+}
+
 .table {
   width: 100%;
+  min-width: 600px;
   margin-bottom: 15px;
   border-collapse: collapse;
   background-color: #fff;
@@ -186,17 +193,99 @@ ul li {
 }
 
 /* Responsive Design */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .container {
-      padding: 15px;
+    padding: 20px 15px;
+    margin: 10px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  .card-header {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .card-header input {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  .d-flex {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .d-flex.mb-2 {
+    flex-direction: column;
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .table {
+    min-width: 600px;
+  }
+
+  .table th {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .table th input,
+  .table th select,
+  .table th button {
+    width: 100%;
+    margin: 2px 0;
   }
 
   button {
-      padding: 6px 12px;
+    padding: 10px 16px;
+    font-size: 14px;
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 8px;
   }
 
   .form-control {
-      padding: 8px;
+    padding: 10px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 15px 10px;
+    margin: 5px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  button {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  .form-control {
+    padding: 8px;
+    font-size: 13px;
+  }
+
+  .table {
+    min-width: 500px;
+  }
+
+  .table th,
+  .table td {
+    padding: 6px;
+    font-size: 12px;
   }
 }
 

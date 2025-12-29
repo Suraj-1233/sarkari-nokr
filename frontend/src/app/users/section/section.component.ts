@@ -13,14 +13,14 @@ export class SectionComponent {
   isExpanded = false;
 
   ngOnInit() {
-    
-    this.visibleItems = this.data.data.slice(0, 9);
+    // FIXED: Limit to 4 items max for better information density
+    this.visibleItems = this.data.data.slice(0, 4);
   }
 
   toggleViewMore() {
-  
     this.isExpanded = !this.isExpanded;
-    this.visibleItems = this.isExpanded ? this.data.data : this.data.data.slice(0, 5);
+    // FIXED: Show 4 items when collapsed, all when expanded
+    this.visibleItems = this.isExpanded ? this.data.data : this.data.data.slice(0, 4);
   }
 
   openInNewTab(url: string) {

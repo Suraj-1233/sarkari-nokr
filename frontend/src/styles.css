@@ -5,6 +5,8 @@ html, body {
   height: 100%; 
   margin: 0;
   padding: 0;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 body { 
@@ -14,6 +16,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background: linear-gradient(to bottom, #f8f9fa 0%, #e9ecef 100%);
   min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 * {
@@ -27,13 +31,13 @@ html {
 
 /* Better focus styles for accessibility */
 *:focus {
-  outline: 2px solid #667eea;
+  outline: 2px solid #9d2235;
   outline-offset: 2px;
 }
 
 button:focus,
 a:focus {
-  outline: 2px solid #667eea;
+  outline: 2px solid #9d2235;
   outline-offset: 2px;
 }
 
@@ -74,21 +78,85 @@ a {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #9d2235 0%, #c92a42 100%);
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #5568d3 0%, #6a3f8f 100%);
+  background: linear-gradient(135deg, #8b1e2f 0%, #b8253a 100%);
 }
 
 /* Selection Color */
 ::selection {
-  background: #667eea;
+  background: #9d2235;
   color: white;
 }
 
 ::-moz-selection {
-  background: #667eea;
+  background: #9d2235;
   color: white;
+}
+
+/* Responsive Utilities */
+@media (max-width: 1024px) {
+  body {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 13px;
+  }
+}
+
+/* Ensure images are responsive */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Responsive containers */
+.container-responsive {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+/* Prevent horizontal scroll */
+* {
+  max-width: 100%;
+}
+
+/* Responsive utilities */
+@media (max-width: 768px) {
+  .container-responsive {
+    padding: 0 15px;
+  }
+  
+  /* Ensure no element causes horizontal scroll */
+  body, html {
+    overflow-x: hidden;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .container-responsive {
+    padding: 0 10px;
+  }
+  
+  /* Ensure no element causes horizontal scroll on mobile */
+  body, html {
+    overflow-x: hidden;
+    width: 100%;
+  }
 }

@@ -14,7 +14,15 @@
         <button class="btn btn-primary mt-2" (click)="createPost()">✅ Create Post</button>
 
       <button class="btn btn-warning" (click)="updatePost()">✏️ Update Post</button>
-      <button class="btn btn-danger" (click)="deletePost()">❌ Delete Post</button>
+      <button 
+        class="btn btn-danger" 
+        (click)="deletePost()"
+        [disabled]="isDeleting || !postId || postId.trim() === ''">
+        <span *ngIf="!isDeleting">❌ Delete Post</span>
+        <span *ngIf="isDeleting">
+          <span class="spinner-small"></span> Deleting...
+        </span>
+      </button>
 
     </div>
   </div>

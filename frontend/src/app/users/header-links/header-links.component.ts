@@ -94,14 +94,14 @@ export class HeaderLinksComponent  implements OnInit {
 
   getGradientColor(index: number): string {
     const gradients = [
-      'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-      'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-      'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
-      'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
-      'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
-      'linear-gradient(135deg, #30cfd0 0%, #330867 100%)',
-      'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
-      'linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)'
+      'linear-gradient(135deg, #9d2235 0%, #c92a42 100%)',
+      'linear-gradient(135deg, #8b1e2f 0%, #b8253a 100%)',
+      'linear-gradient(135deg, #7a1a29 0%, #a72032 100%)',
+      'linear-gradient(135deg, #c92a42 0%, #d63a52 100%)',
+      'linear-gradient(135deg, #9d2235 0%, #b8253a 100%)',
+      'linear-gradient(135deg, #8b1e2f 0%, #c92a42 100%)',
+      'linear-gradient(135deg, #a72032 0%, #d63a52 100%)',
+      'linear-gradient(135deg, #9d2235 0%, #c92a42 100%)'
     ];
     return gradients[index % gradients.length];
   }

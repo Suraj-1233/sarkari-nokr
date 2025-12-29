@@ -10,11 +10,4 @@
       </p>
           </div>
   </div>
-
-  <nav class="nav-bar">
-    <a style="cursor: pointer;" href="/" class="nav-item">Home</a>
-    <a style="cursor: pointer;" *ngFor="let item of records" (click)="openInNewTab('/type/' + item.typeOfPost)" class="nav-item">
-      {{ item.typeOfPost }}
-    </a>
-  </nav>
 </header>
