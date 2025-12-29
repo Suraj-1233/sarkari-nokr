@@ -8,8 +8,7 @@ COPY src ./src
 RUN mvn clean package -DskipTests
 
 # Use OpenJDK for running the application
-FROM openjdk:17-jdk-slim
-
+FROM eclipse-temurin:17-jdk-jammy
 WORKDIR /app
 
 # Copy the built JAR file from the previous stage
