@@ -19,7 +19,7 @@ import com.example.mongo.dto.LoginRequest;
       "https://www.servicesarkari.com",
         "http://13.233.121.16",
         "http://localhost:4200",
-       "https://sarkari-nokr.vercel.app/"
+       "https://sarkari-nokr.vercel.app"
     },
     allowCredentials = "true"
 )
