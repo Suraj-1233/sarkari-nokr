@@ -1,0 +1,64 @@
+.dialog-container {
+  padding: 0;
+}
+
+.dialog-header {
+  padding: 20px 24px 0;
+}
+
+.dialog-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+mat-dialog-content {
+  padding: 20px 24px;
+  margin: 0;
+}
+
+.dialog-content-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.dialog-icon {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+}
+
+.dialog-message {
+  margin: 0;
+  flex: 1;
+  line-height: 1.5;
+  font-size: 1rem;
+}
+
+.text-success {
+  color: #28a745;
+}
+
+.text-danger {
+  color: #dc3545;
+}
+
+.text-warning {
+  color: #ffc107;
+}
+
+.text-info {
+  color: #17a2b8;
+}
+
+mat-dialog-actions {
+  padding: 8px 24px 20px;
+  margin: 0;
+}
+
+.btn-close {
+  min-width: 80px;
+}
+
