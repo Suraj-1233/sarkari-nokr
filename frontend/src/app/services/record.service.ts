@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { API_ENDPOINTS } from '../constants/api-endpoints';
 
@@ -10,13 +10,6 @@ export class RecordService {
   private baseUrl = API_ENDPOINTS.BASE_URL;
 
   constructor(private http: HttpClient) {}
-  private getAuthHeaders(): HttpHeaders {
-    const token = localStorage.getItem('token');
-    return new HttpHeaders({
-      Authorization: `Bearer ${token}`
-    });
-  }
-
 
   // Get all records
   getAllRecords(): Observable<any> {
@@ -33,22 +26,18 @@ export class RecordService {
     return this.http.get(`${this.baseUrl}${API_ENDPOINTS.RECORDS.GET_BY_TYPE(type)}`);
   }
 
-  // Create a new record
+  // Create a new record (Auth header added by interceptor)
   createRecord(record: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}${API_ENDPOINTS.RECORDS.CREATE}`, record ,
-      { headers: this.getAuthHeaders() });
+    return this.http.post(`${this.baseUrl}${API_ENDPOINTS.RECORDS.CREATE}`, record);
   }
 
-  // Update an existing record
+  // Update an existing record (Auth header added by interceptor)
   updateRecord(id: string, record: any): Observable<any> {
-    return this.http.put(`${this.baseUrl}${API_ENDPOINTS.RECORDS.UPDATE(id)}`, record ,
-    { headers: this.getAuthHeaders() });
+    return this.http.put(`${this.baseUrl}${API_ENDPOINTS.RECORDS.UPDATE(id)}`, record);
   }
 
-  // Delete a record
+  // Delete a record (Auth header added by interceptor)
   deleteRecord(id: string): Observable<any> {
-
-    return this.http.delete(`${this.baseUrl}${API_ENDPOINTS.RECORDS.DELETE(id)}` ,
-    { headers: this.getAuthHeaders() });
+    return this.http.delete(`${this.baseUrl}${API_ENDPOINTS.RECORDS.DELETE(id)}`);
   }
 }

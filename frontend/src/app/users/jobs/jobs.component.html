@@ -1,21 +1,37 @@
-<div  *ngIf="hasJobsData">
+<!-- Loading State -->
+<div class="loading-container" *ngIf="isLoading">
+  <div class="spinner-large"></div>
+  <p>Loading job details...</p>
+</div>
+
+<!-- Error State -->
+<div class="error-container" *ngIf="errorMessage && !isLoading">
+  <div class="error-box">
+    <span class="error-icon">⚠️</span>
+    <h3>Oops! Something went wrong</h3>
+    <p>{{ errorMessage }}</p>
+    <button class="retry-button" (click)="getDataById(id)">Try Again</button>
+  </div>
+</div>
+
+<!-- Main Content -->
+<div *ngIf="hasJobsData && !isLoading && !errorMessage">
   <div class="container">
-      <app-header></app-header>
-      </div>
-      <app-job-page [jobsData]=jobsData>
-      </app-job-page>
-      <app-dynamic-content 
-        [data]="{
-          title: 'Why Should I Consider a Government Job?',
-          content: [
-            'In India, a Sarkari Naukri is highly sought-after. It\'s the ultimate career goal...',
-            'More than that, an Indian government job offers an opportunity to live a life of purpose.',
-            'It\'s a way for you to give back to your community.',
-            'According to the Centre for Monitoring Indian Economy Pvt. Ltd., the unemployment rate...',
-            'In addition, government jobs in India can be pretty lucrative...',
-            'Keep in mind that these jobs are also highly competitive with a complex application process!'
-          ]
-        }">
-      </app-dynamic-content>
+    <app-header></app-header>
+  </div>
+  <app-job-page [jobsData]="jobsData"></app-job-page>
+  <app-dynamic-content 
+    [data]="{
+      title: 'Why Should I Consider a Government Job?',
+      content: [
+        'In India, a Sarkari Naukri is highly sought-after. It\'s the ultimate career goal...',
+        'More than that, an Indian government job offers an opportunity to live a life of purpose.',
+        'It\'s a way for you to give back to your community.',
+        'According to the Centre for Monitoring Indian Economy Pvt. Ltd., the unemployment rate...',
+        'In addition, government jobs in India can be pretty lucrative...',
+        'Keep in mind that these jobs are also highly competitive with a complex application process!'
+      ]
+    }">
+  </app-dynamic-content>
 </div>
   

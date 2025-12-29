@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RecordService } from 'src/app/services/record.service';
 
 @Component({
@@ -6,19 +6,26 @@ import { RecordService } from 'src/app/services/record.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   records: any[] = [];
-  data='ff'
-    constructor(private recordService: RecordService) {}
   
-    ngOnInit(): void {
-      this.recordService.getAllRecords().subscribe(data => {
-        this.records = data;
-        console.log(this.records , " ths ");
-        this.records=this.extractUniqueTypeAndTitle(this.records)
-        console.log(this.extractUniqueTypeAndTitle(this.records))
-      });
-    }
+  constructor(private recordService: RecordService) {}
+  
+  ngOnInit(): void {
+    this.loadRecords();
+  }
+
+  loadRecords(): void {
+    this.recordService.getAllRecords().subscribe({
+      next: (data) => {
+        this.records = this.extractUniqueTypeAndTitle(data);
+      },
+      error: (error) => {
+        console.error('Error loading records for header:', error);
+        this.records = [];
+      }
+    });
+  }
    
    
     extractUniqueTypeAndTitle(dataArray: any[], limit = 5) {

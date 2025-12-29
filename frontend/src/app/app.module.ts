@@ -14,10 +14,10 @@ import { PostInputComponent } from './Admin/post-input/post-input.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RecordService } from './services/record.service';
 import { LoginComponent } from './Admin/login/login.component';
-  
+import { AuthInterceptor } from './services/http.interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { UsersComponent } from './users/users/users.component';
 import { JobsComponent } from './users/jobs/jobs.component';
@@ -60,7 +60,13 @@ import { ConfirmDialogComponent } from './shared/dialogs/confirm-dialog/confirm-
     DragDropModule
 
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,14 +1,13 @@
 package com.example.mongo.config;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -16,20 +15,15 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Component  
-@Lazy
 public class JwtFilter extends OncePerRequestFilter {
 
-    @Autowired
-    private JwtUtil jwtUtil;
+    private static final Logger logger = LoggerFactory.getLogger(JwtFilter.class);
+    
+    private final JwtUtil jwtUtil;
+    private final UserDetailsService userDetailsService;
 
     @Autowired
-    private UserDetailsService userDetailsService;
-      @Autowired
-    private AuthenticationConfiguration authenticationConfiguration;
-
-
-    @Autowired
-    public JwtFilter(JwtUtil jwtUtil, UserDetailsService userDetailsService) { // ✅ No manual bean creation required
+    public JwtFilter(JwtUtil jwtUtil, UserDetailsService userDetailsService) {
         this.jwtUtil = jwtUtil;
         this.userDetailsService = userDetailsService;
     }
@@ -38,29 +32,31 @@ public class JwtFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
-        String token = request.getHeader("Authorization");
+        try {
+            String authHeader = request.getHeader("Authorization");
 
-        if (token != null && token.startsWith("Bearer ")) {
-            token = token.substring(7);
+            if (authHeader != null && authHeader.startsWith("Bearer ")) {
+                String token = authHeader.substring(7);
             String username = jwtUtil.extractUsername(token);
 
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+                    try {
                 var userDetails = userDetailsService.loadUserByUsername(username);
                 if (jwtUtil.validateToken(token, userDetails)) {
-                    try {
-                        AuthenticationManager authManager = authenticationConfiguration.getAuthenticationManager();
-                    } catch (Exception e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                    
                     var authToken = new UsernamePasswordAuthenticationToken(
                             userDetails, null, userDetails.getAuthorities());
                     
                     authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                     SecurityContextHolder.getContext().setAuthentication(authToken);
+                        }
+                    } catch (Exception e) {
+                        // Invalid token or user not found - continue without authentication
+                        logger.debug("JWT validation failed: " + e.getMessage());
+                    }
                 }
             }
+        } catch (Exception e) {
+            logger.error("Error processing JWT token", e);
         }
 
         filterChain.doFilter(request, response);

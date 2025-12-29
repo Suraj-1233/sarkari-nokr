@@ -22,24 +22,20 @@ export class HeaderLinksComponent  implements OnInit {
   // ];
   
  ngOnInit(): void {
-  console.log(this.middleLinks)
-  console.log(this.middleLinks);
    this.groupedLinks = this.middleLinks.reduce<{ nameOfPost: string; id: string }[][]>((acc, link, index) => {
     const groupIndex = Math.floor(index / 3);
   
     if (!acc[groupIndex]) {
-      acc[groupIndex] = []; // Initialize sub-array
+      acc[groupIndex] = [];
     }
   
     acc[groupIndex].push({
-      nameOfPost: link.nameOfPost, // Correct key mapping
+      nameOfPost: link.nameOfPost,
       id: link.id
     });
   
     return acc;
   }, []);
-
-     
  }
 
   topLinks: any[] = [
@@ -93,6 +89,25 @@ export class HeaderLinksComponent  implements OnInit {
   
   getRandomColor(index: number): string {
     const colors = ["#FF5733", "#33FF57", "#3357FF", "#F3C623", "#E91E63"];
-    return colors[index % colors.length]; // Cycles through colors
+    return colors[index % colors.length];
+  }
+
+  getGradientColor(index: number): string {
+    const gradients = [
+      'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+      'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+      'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+      'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+      'linear-gradient(135deg, #30cfd0 0%, #330867 100%)',
+      'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
+      'linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)'
+    ];
+    return gradients[index % gradients.length];
+  }
+
+  getBoxIcon(index: number): string {
+    const icons = ['📋', '🎓', '📝', '✅', '📄', '🔑', '📚', '💼'];
+    return icons[index % icons.length];
   }
 }

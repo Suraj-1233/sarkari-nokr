@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # Compiled output
@@ -41,69 +40,27 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
-=======
-node_modules
->>>>>>> sarkari-serivce-fe/master
 
-
-fe/.angular/
-
-spring-boot-mongo/target/
+# Backend - Maven
+backend/target/
 *.jar
 *.war
 *.ear
-spring-boot-mongo/target/
-spring-boot-mongo/target/classes/com/example/mongo/config/JwtFilter.class
-spring-boot-mongo/target/classes/com/example/mongo/config/JwtUtil.class
-spring-boot-mongo/target/classes/com/example/mongo/controller/RecordController.class
-spring-boot-mongo/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
-spring-boot-mongo/target/spring-boot-mongo-1.0.0.jar.original
-spring-boot-mongo/target/classes/application.properties
-spring-boot-mongo/target/classes/com/example/mongo/SpringBootMongoApplication.class
-spring-boot-mongo/target/classes/com/example/mongo/config/CorsConfig.class
-spring-boot-mongo/target/classes/com/example/mongo/dto/LoginRequest.class
-spring-boot-mongo/target/classes/com/example/mongo/dto/LoginResponse.class
-spring-boot-mongo/target/classes/com/example/mongo/model/DataItem.class
-spring-boot-mongo/target/classes/com/example/mongo/model/MongoRecord.class
-spring-boot-mongo/target/classes/com/example/mongo/model/User.class
-spring-boot-mongo/target/classes/com/example/mongo/repository/RecordRepository.class
-spring-boot-mongo/target/classes/com/example/mongo/repository/UserRepository.class
-spring-boot-mongo/target/classes/com/example/mongo/service/RecordService.class
-spring-boot-mongo/target/classes/application.properties
-spring-boot-mongo/target/classes/com/example/mongo/SpringBootMongoApplication.class
-spring-boot-mongo/target/classes/com/example/mongo/config/CorsConfig.class
-spring-boot-mongo/target/classes/com/example/mongo/dto/LoginRequest.class
-spring-boot-mongo/target/classes/com/example/mongo/dto/LoginResponse.class
-spring-boot-mongo/target/classes/com/example/mongo/model/DataItem.class
-spring-boot-mongo/target/classes/com/example/mongo/model/MongoRecord.class
-spring-boot-mongo/target/classes/com/example/mongo/model/User.class
-spring-boot-mongo/target/classes/com/example/mongo/repository/RecordRepository.class
-spring-boot-mongo/target/classes/com/example/mongo/repository/UserRepository.class
-spring-boot-mongo/target/classes/com/example/mongo/service/RecordService.class
-spring-boot-mongo/target/classes/application.properties
-backend/target/spring-boot-mongo-1.0.0.jar.original
-backend/target/classes/application.properties
-backend/target/classes/com/example/mongo/SpringBootMongoApplication.class
-backend/target/classes/com/example/mongo/config/CorsConfig.class
-backend/target/classes/com/example/mongo/config/JwtFilter.class
-backend/target/classes/com/example/mongo/config/JwtUtil.class
-backend/target/classes/com/example/mongo/config/SecurityConfig.class
-backend/target/classes/com/example/mongo/controller/AuthController.class
-backend/target/classes/com/example/mongo/controller/RecordController.class
-backend/target/classes/com/example/mongo/dto/LoginRequest.class
-backend/target/classes/com/example/mongo/dto/LoginResponse.class
-backend/target/classes/com/example/mongo/model/DataItem.class
-backend/target/classes/com/example/mongo/model/MongoRecord.class
-backend/target/classes/com/example/mongo/model/User.class
-backend/target/classes/com/example/mongo/repository/RecordRepository.class
-backend/target/classes/com/example/mongo/repository/UserRepository.class
-backend/target/classes/com/example/mongo/service/RecordService.class
-backend/target/classes/com/example/mongo/service/UserService.class
-backend/target/maven-archiver/pom.properties
-backend/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
-backend/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
 
+# Backend - Application properties (contains sensitive data)
+backend/src/main/resources/application.properties
+backend/src/main/resources/application-*.properties
 
-
-
+# Frontend
 frontend/.angular
+frontend/dist/
+frontend/node_modules/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+logs/

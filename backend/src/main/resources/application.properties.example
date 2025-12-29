@@ -32,9 +32,3 @@ spring.http.encoding.force=true
 # Allow circular references (consider refactoring to remove this)
 spring.main.allow-circular-references=true
 
-# Data Initialization
-# Set these to create default admin user on first startup
-# WARNING: Disable this after creating the admin user!
-app.init.admin.enabled=${INIT_ADMIN_ENABLED:false}
-app.init.admin.username=${INIT_ADMIN_USERNAME:admin}
-app.init.admin.password=${INIT_ADMIN_PASSWORD:}

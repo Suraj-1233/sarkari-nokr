@@ -13,17 +13,28 @@ export class UsersComponent implements OnInit {
   coloredBoxes:any[] = []
   sections: any;
   records: any[] = [];
+  isLoading: boolean = true;
+  errorMessage: string = '';
 
   constructor(private recordService: RecordService) {}
 
   ngOnInit(): void {
-    this.recordService.getAllRecords().subscribe(data => {
+    this.loadData();
+  }
+
+  loadData(): void {
+    this.isLoading = true;
+    this.errorMessage = '';
+    
+    this.recordService.getAllRecords().subscribe({
+      next: (data) => {
       this.records = data;
       const sortedData = this.sortDataInTwoParts(data);
-      this.coloredBoxes=sortedData.firstPart;
-      this.middleLinks=sortedData.secondPart;
-      this.sections=this.getGroupedData(this.records);
-      const priorityOrder = ["Result", "Admit Card", "Latest Jobs","Answer Key"];
+        this.coloredBoxes = sortedData.firstPart;
+        this.middleLinks = sortedData.secondPart;
+        this.sections = this.getGroupedData(this.records);
+        
+        const priorityOrder = ["Result", "Admit Card", "Latest Jobs", "Answer Key"];
       const prioritySections = this.sections.filter(
         (section: any) => priorityOrder.includes(section.type)
       );
@@ -33,9 +44,13 @@ export class UsersComponent implements OnInit {
       );
   
       this.sections = [...prioritySections, ...otherSections];
-  
-
-      
+        this.isLoading = false;
+      },
+      error: (error) => {
+        console.error('Error loading records:', error);
+        this.errorMessage = 'Failed to load data. Please try again later.';
+        this.isLoading = false;
+      }
     });
   }
   getGroupedData(data: any[]): any[] {

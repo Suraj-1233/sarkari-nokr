@@ -1,17 +1,42 @@
+<!-- Loading State -->
+<div class="loading-container" *ngIf="isLoading">
+  <div class="spinner-large"></div>
+  <p>Loading content...</p>
+</div>
 
+<!-- Error State -->
+<div class="error-container" *ngIf="errorMessage && !isLoading">
+  <div class="error-box">
+    <span class="error-icon">⚠️</span>
+    <h3>Oops! Something went wrong</h3>
+    <p>{{ errorMessage }}</p>
+    <button class="retry-button" (click)="loadData()">Try Again</button>
+  </div>
+</div>
 
-
-<div class="container" *ngIf="coloredBoxes && coloredBoxes.length > 0 && middleLinks && middleLinks.length > 0">
+<!-- Main Content -->
+<div class="container" *ngIf="!isLoading && !errorMessage && coloredBoxes && coloredBoxes.length > 0 && middleLinks && middleLinks.length > 0">
   <app-header></app-header>
   <app-header-links [coloredBoxes]="coloredBoxes" [middleLinks]="middleLinks"></app-header-links>
 
-  <div  *ngIf="sections && sections.length > 0">
+  <div *ngIf="sections && sections.length > 0">
     <div class="sections-wrapper">
       <app-section *ngFor="let section of sections" [data]="section"></app-section>
     </div>
   </div>
 </div>
+
+<!-- Empty State -->
+<div class="empty-container" *ngIf="!isLoading && !errorMessage && (!coloredBoxes || coloredBoxes.length === 0)">
+  <div class="empty-box">
+    <span class="empty-icon">📋</span>
+    <h3>No content available</h3>
+    <p>There are no records to display at the moment.</p>
+  </div>
+</div>
+
 <app-dynamic-content 
+  *ngIf="!isLoading && !errorMessage"
   [data]="{
     title: 'Why Should I Consider a Government Job?',
     content: [

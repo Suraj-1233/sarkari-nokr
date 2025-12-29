@@ -1,6 +1,23 @@
-<div class="container">
+<!-- Loading State -->
+<div class="loading-container" *ngIf="isLoading">
+  <div class="spinner-large"></div>
+  <p>Loading content...</p>
+</div>
+
+<!-- Error State -->
+<div class="error-container" *ngIf="errorMessage && !isLoading">
+  <div class="error-box">
+    <span class="error-icon">⚠️</span>
+    <h3>Oops! Something went wrong</h3>
+    <p>{{ errorMessage }}</p>
+    <button class="retry-button" (click)="getDataByType(type)">Try Again</button>
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="container" *ngIf="!isLoading && !errorMessage">
   <app-header></app-header>
-<div class="section">
+  <div class="section" *ngIf="visibleItems && visibleItems.length > 0">
     <h2>{{ title }}</h2>
     <ul>
       <li *ngFor="let item of visibleItems">
@@ -9,6 +26,14 @@
         </a>
       </li>
     </ul>
+  </div>
   
+  <!-- Empty State -->
+  <div class="empty-container" *ngIf="!isLoading && !errorMessage && (!visibleItems || visibleItems.length === 0)">
+    <div class="empty-box">
+      <span class="empty-icon">📋</span>
+      <h3>No content available</h3>
+      <p>There are no records for this type at the moment.</p>
+    </div>
   </div>
 </div>
