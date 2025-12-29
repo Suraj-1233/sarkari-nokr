@@ -1,5 +1,5 @@
 export const API_ENDPOINTS = {
-   BASE_URL: 'https://www.servicesarkari.com/api',
+   BASE_URL: 'https://backend-service-rbor.onrender.com/api',
   //BASE_URL: 'http://localhost:8080',
     RECORDS: {
       GET_ALL: '/records',
