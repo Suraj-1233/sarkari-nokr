@@ -1,0 +1,844 @@
+/**
+ * GLOBAL STYLES - SARKARI SERVICE
+ * Mobile-First Responsive Design with 8px Spacing System
+ * 
+ * Design System:
+ * - 8px base spacing unit
+ * - Color palette: Primary (#9d2235), Secondary (#f8f9fa)
+ * - Typography: Poppins with 16px base
+ * - Breakpoints: Mobile (default), Tablet (768px), Desktop (1024px)
+ */
+
+// ============================================================================
+// 1. VARIABLES & CONFIGURATION
+// ============================================================================
+
+// Color Palette
+$color-primary: #9d2235;
+$color-primary-dark: #8b1e2f;
+$color-primary-light: #c92a42;
+$color-primary-lighter: rgba(157, 34, 53, 0.1);
+
+$color-secondary: #f8f9fa;
+$color-tertiary: #2d2d2d;
+$color-tertiary-light: #3d3d3d;
+
+$color-success: #28a745;
+$color-danger: #dc3545;
+$color-warning: #ffc107;
+$color-info: #17a2b8;
+
+$color-text: #333;
+$color-text-light: #666;
+$color-text-lighter: #999;
+$color-border: #ddd;
+$color-border-light: #e0e0e0;
+$color-bg: #fff;
+$color-bg-light: #f9f9f9;
+
+// Spacing System (8px base)
+$space-xs: 4px;      // 0.5 units
+$space-sm: 8px;      // 1 unit
+$space-md: 16px;     // 2 units
+$space-lg: 24px;     // 3 units
+$space-xl: 32px;     // 4 units
+$space-2xl: 40px;    // 5 units
+
+// Typography
+$font-family-base: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+$font-size-base: 16px;
+$font-size-sm: 14px;
+$font-size-xs: 12px;
+$font-size-lg: 18px;
+$font-size-xl: 24px;
+$font-size-2xl: 28px;
+$font-size-3xl: 32px;
+
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+$line-height-tight: 1.2;
+$line-height-normal: 1.5;
+$line-height-relaxed: 1.8;
+
+// Border Radius
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 12px;
+$border-radius-full: 50%;
+
+// Shadows
+$shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.12);
+$shadow-xl: 0 10px 40px rgba(0, 0, 0, 0.2);
+
+$shadow-primary: 0 4px 20px rgba(157, 34, 53, 0.3);
+$shadow-inset: inset 0 2px 10px rgba(0, 0, 0, 0.3);
+
+// Transitions
+$transition-fast: 0.2s ease;
+$transition-normal: 0.3s ease;
+$transition-slow: 0.5s ease;
+
+// Breakpoints
+$breakpoint-mobile: 0;      // Default
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+$breakpoint-wide: 1200px;
+
+// Container widths
+$container-mobile: 100%;
+$container-tablet: 100%;
+$container-desktop: 1200px;
+
+// ============================================================================
+// 2. MIXINS
+// ============================================================================
+
+// Responsive media queries
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == 'tablet' {
+    @media (min-width: $breakpoint-tablet) {
+      @content;
+    }
+  } @else if $breakpoint == 'desktop' {
+    @media (min-width: $breakpoint-desktop) {
+      @content;
+    }
+  } @else if $breakpoint == 'wide' {
+    @media (min-width: $breakpoint-wide) {
+      @content;
+    }
+  } @else if $breakpoint == 'mobile-only' {
+    @media (max-width: 767px) {
+      @content;
+    }
+  }
+}
+
+// Mobile-first container with max-width
+@mixin container($max-width: $container-desktop, $padding: $space-md) {
+  width: 100%;
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 0 $padding;
+  box-sizing: border-box;
+
+  @include respond-to('tablet') {
+    padding: 0 $space-lg;
+  }
+
+  @include respond-to('desktop') {
+    padding: 0 $space-xl;
+  }
+}
+
+// Flexbox shorthand
+@mixin flex-center($direction: row, $gap: $space-md) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: $direction;
+  gap: $gap;
+}
+
+@mixin flex-between($gap: $space-md) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $gap;
+}
+
+@mixin flex-start($direction: row, $gap: $space-md) {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: $direction;
+  gap: $gap;
+}
+
+// Grid
+@mixin grid($columns: 1, $gap: $space-md) {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  gap: $gap;
+
+  @include respond-to('tablet') {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+
+  @include respond-to('desktop') {
+    grid-template-columns: repeat($columns, 1fr);
+  }
+}
+
+// Typography shortcuts
+@mixin heading($size: $font-size-2xl, $weight: $font-weight-bold) {
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $line-height-tight;
+  color: $color-text;
+  margin: 0;
+}
+
+@mixin text-body($size: $font-size-base, $weight: $font-weight-normal, $color: $color-text) {
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $line-height-normal;
+  color: $color;
+}
+
+// Button reset (remove default styles)
+@mixin button-reset {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+// Input reset
+@mixin input-reset {
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  box-sizing: border-box;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  &[type='number'] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+  }
+}
+
+// Gradient primary
+@mixin gradient-primary {
+  background: linear-gradient(135deg, $color-primary 0%, $color-primary-light 100%);
+}
+
+// Gradient dark
+@mixin gradient-dark {
+  background: linear-gradient(135deg, $color-tertiary 0%, $color-tertiary-light 100%);
+}
+
+// Focus state
+@mixin focus-state($color: $color-primary) {
+  outline: 2px solid $color;
+  outline-offset: 2px;
+}
+
+// Box shadow with hover effect
+@mixin shadow-lift($shadow: $shadow-lg) {
+  box-shadow: $shadow;
+  transition: all $transition-normal;
+
+  &:hover {
+    box-shadow: $shadow-xl;
+    transform: translateY(-2px);
+  }
+}
+
+// Truncate text
+@mixin truncate($lines: 1) {
+  @if $lines == 1 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  } @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+// Responsive padding (mobile-first)
+@mixin padding-responsive($mobile: $space-md, $tablet: $space-lg, $desktop: $space-xl) {
+  padding: $mobile;
+
+  @include respond-to('tablet') {
+    padding: $tablet;
+  }
+
+  @include respond-to('desktop') {
+    padding: $desktop;
+  }
+}
+
+// ============================================================================
+// 3. RESET & GLOBAL STYLES
+// ============================================================================
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @include respond-to('tablet') {
+    font-size: 16px;
+  }
+
+  @include respond-to('mobile-only') {
+    font-size: 15px;
+  }
+}
+
+body {
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  line-height: $line-height-normal;
+  color: $color-text;
+  background: linear-gradient(to bottom, $color-secondary 0%, #e9ecef 100%);
+  min-height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+// Prevent horizontal scroll
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+// ============================================================================
+// 4. TYPOGRAPHY
+// ============================================================================
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  line-height: $line-height-tight;
+  color: $color-text;
+  font-weight: $font-weight-bold;
+}
+
+h1 {
+  @include heading($font-size-3xl);
+  margin-bottom: $space-lg;
+
+  @include respond-to('tablet') {
+    font-size: $font-size-2xl;
+  }
+
+  @include respond-to('mobile-only') {
+    font-size: $font-size-xl;
+  }
+}
+
+h2 {
+  @include heading($font-size-2xl);
+  margin-bottom: $space-md;
+
+  @include respond-to('mobile-only') {
+    font-size: $font-size-lg;
+  }
+}
+
+h3 {
+  @include heading($font-size-xl);
+  margin-bottom: $space-md;
+}
+
+h4 {
+  @include heading($font-size-lg);
+  margin-bottom: $space-sm;
+}
+
+p {
+  @include text-body();
+  margin-bottom: $space-md;
+  line-height: $line-height-relaxed;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+a {
+  color: $color-primary;
+  text-decoration: none;
+  transition: color $transition-normal;
+
+  &:hover {
+    color: $color-primary-light;
+  }
+
+  &:focus {
+    @include focus-state();
+  }
+}
+
+// ============================================================================
+// 5. FORM ELEMENTS
+// ============================================================================
+
+input,
+textarea,
+select {
+  @include input-reset;
+}
+
+label {
+  display: block;
+  margin-bottom: $space-sm;
+  font-weight: $font-weight-medium;
+  font-size: $font-size-sm;
+  color: $color-text;
+}
+
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='date'],
+input[type='datetime-local'],
+input[type='number'],
+textarea,
+select {
+  width: 100%;
+  padding: $space-sm $space-md;
+  border: 2px solid $color-border-light;
+  border-radius: $border-radius-md;
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  color: $color-text;
+  background-color: $color-bg;
+  transition: all $transition-normal;
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+    box-shadow: 0 0 0 3px $color-primary-lighter;
+  }
+
+  &:disabled {
+    background-color: $color-bg-light;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  &.error {
+    border-color: $color-danger;
+
+    &:focus {
+      box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+    }
+  }
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+  font-family: $font-family-base;
+}
+
+// ============================================================================
+// 6. BUTTONS
+// ============================================================================
+
+button {
+  @include button-reset;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-sm;
+  padding: $space-sm $space-lg;
+  border: none;
+  border-radius: $border-radius-md;
+  font-family: $font-family-base;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $color-bg;
+  background-color: $color-primary;
+  cursor: pointer;
+  transition: all $transition-normal;
+  min-height: 44px;  // Touch-friendly on mobile
+  white-space: nowrap;
+
+  &:hover:not(:disabled) {
+    background-color: $color-primary-light;
+    transform: translateY(-2px);
+    box-shadow: $shadow-lg;
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &:focus {
+    @include focus-state();
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  // Button variants
+  &.btn-primary {
+    background-color: $color-primary;
+
+    &:hover:not(:disabled) {
+      background-color: $color-primary-light;
+    }
+  }
+
+  &.btn-secondary {
+    background-color: #6c757d;
+    color: $color-bg;
+
+    &:hover:not(:disabled) {
+      background-color: #5a6268;
+    }
+  }
+
+  &.btn-success {
+    background-color: $color-success;
+
+    &:hover:not(:disabled) {
+      background-color: #218838;
+    }
+  }
+
+  &.btn-danger {
+    background-color: $color-danger;
+
+    &:hover:not(:disabled) {
+      background-color: #c82333;
+    }
+  }
+
+  &.btn-warning {
+    background-color: $color-warning;
+    color: $color-text;
+
+    &:hover:not(:disabled) {
+      background-color: #e0a800;
+    }
+  }
+
+  &.btn-info {
+    background-color: $color-info;
+
+    &:hover:not(:disabled) {
+      background-color: #138496;
+    }
+  }
+
+  &.btn-sm {
+    padding: $space-xs $space-md;
+    font-size: $font-size-xs;
+    min-height: 32px;
+  }
+
+  &.btn-lg {
+    padding: $space-md $space-xl;
+    font-size: $font-size-lg;
+    min-height: 48px;
+  }
+
+  &.w-100 {
+    width: 100%;
+  }
+}
+
+// ============================================================================
+// 7. CARDS & CONTAINERS
+// ============================================================================
+
+.card {
+  background-color: $color-bg;
+  border: 1px solid $color-border;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-md;
+  overflow: hidden;
+  transition: all $transition-normal;
+
+  &:hover {
+    box-shadow: $shadow-lg;
+    transform: translateY(-2px);
+  }
+}
+
+.card-header {
+  padding: $space-md;
+  background-color: $color-bg-light;
+  border-bottom: 1px solid $color-border;
+  font-weight: $font-weight-semibold;
+  color: $color-text;
+}
+
+.card-body {
+  padding: $space-md;
+}
+
+.card-footer {
+  padding: $space-md;
+  background-color: $color-bg-light;
+  border-top: 1px solid $color-border;
+}
+
+.container {
+  @include container();
+  padding: $space-md;
+
+  @include respond-to('tablet') {
+    padding: $space-lg;
+  }
+
+  @include respond-to('desktop') {
+    padding: $space-xl;
+  }
+}
+
+// ============================================================================
+// 8. TABLES
+// ============================================================================
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: $space-lg 0;
+  background-color: $color-bg;
+  box-shadow: $shadow-md;
+  border-radius: $border-radius-lg;
+  overflow: hidden;
+}
+
+thead {
+  @include gradient-primary;
+
+  th {
+    color: $color-bg;
+    font-weight: $font-weight-bold;
+    padding: $space-md;
+    text-align: left;
+    white-space: nowrap;
+  }
+}
+
+tbody {
+  tr {
+    border-bottom: 1px solid $color-border;
+    transition: background-color $transition-normal;
+
+    &:hover {
+      background-color: $color-bg-light;
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  td {
+    padding: $space-md;
+    color: $color-text;
+  }
+}
+
+// Mobile table (stack on mobile)
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+
+  @include respond-to('mobile-only') {
+    border-radius: 0;
+    margin: $space-lg (-$space-md);
+    width: calc(100% + #{2 * $space-md});
+
+    table {
+      min-width: 500px;
+    }
+
+    thead,
+    tbody tr {
+      th, td {
+        padding: $space-sm $space-md;
+        font-size: $font-size-sm;
+      }
+    }
+  }
+}
+
+// ============================================================================
+// 9. LISTS
+// ============================================================================
+
+ul, ol {
+  margin-bottom: $space-md;
+  padding-left: $space-lg;
+
+  li {
+    margin-bottom: $space-sm;
+    line-height: $line-height-relaxed;
+    color: $color-text;
+  }
+}
+
+// ============================================================================
+// 10. UTILITIES
+// ============================================================================
+
+// Spacing utilities
+.m-0 { margin: 0; }
+.mt-0 { margin-top: 0; }
+.mb-0 { margin-bottom: 0; }
+.ml-0 { margin-left: 0; }
+.mr-0 { margin-right: 0; }
+
+.m-1 { margin: $space-sm; }
+.mt-1 { margin-top: $space-sm; }
+.mb-1 { margin-bottom: $space-sm; }
+.ml-1 { margin-left: $space-sm; }
+.mr-1 { margin-right: $space-sm; }
+
+.m-2 { margin: $space-md; }
+.mt-2 { margin-top: $space-md; }
+.mb-2 { margin-bottom: $space-md; }
+.ml-2 { margin-left: $space-md; }
+.mr-2 { margin-right: $space-md; }
+
+.m-3 { margin: $space-lg; }
+.mt-3 { margin-top: $space-lg; }
+.mb-3 { margin-bottom: $space-lg; }
+.ml-3 { margin-left: $space-lg; }
+.mr-3 { margin-right: $space-lg; }
+
+.p-0 { padding: 0; }
+.p-1 { padding: $space-sm; }
+.p-2 { padding: $space-md; }
+.p-3 { padding: $space-lg; }
+
+// Display utilities
+.flex { display: flex; }
+.grid { display: grid; }
+.block { display: block; }
+.inline { display: inline; }
+.inline-block { display: inline-block; }
+.hidden { display: none; }
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.text-primary { color: $color-primary; }
+.text-success { color: $color-success; }
+.text-danger { color: $color-danger; }
+.text-warning { color: $color-warning; }
+
+// ============================================================================
+// 11. LOADING SPINNER
+// ============================================================================
+
+.spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: $border-radius-full;
+  border-top-color: #fff;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+// ============================================================================
+// 12. SCROLLBAR CUSTOMIZATION
+// ============================================================================
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: $color-bg-light;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, $color-primary 0%, $color-primary-light 100%);
+  border-radius: $border-radius-sm;
+
+  &:hover {
+    background: linear-gradient(135deg, $color-primary-dark 0%, $color-primary 100%);
+  }
+}
+
+// ============================================================================
+// 13. SELECTION COLOR
+// ============================================================================
+
+::selection {
+  background: $color-primary;
+  color: $color-bg;
+}
+
+::-moz-selection {
+  background: $color-primary;
+  color: $color-bg;
+}
+
+// ============================================================================
+// 14. IMAGES & MEDIA
+// ============================================================================
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+// ============================================================================
+// 15. FOCUS MANAGEMENT (ACCESSIBILITY)
+// ============================================================================
+
+*:focus-visible {
+  @include focus-state();
+}
+
+// Remove focus outline for mouse users
+::-moz-focus-inner {
+  border: 0;
+}
+
+// ============================================================================
+// 16. PRINT STYLES
+// ============================================================================
+
+@media print {
+  body {
+    background: $color-bg;
+  }
+
+  .no-print {
+    display: none;
+  }
+}

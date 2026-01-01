@@ -2,5 +2,6 @@
     "cSpell.words": [
         "jsonwebtoken"
     ],
-    "java.configuration.updateBuildConfiguration": "disabled"
+    "java.configuration.updateBuildConfiguration": "disabled",
+    "java.compile.nullAnalysis.mode": "automatic"
 }
