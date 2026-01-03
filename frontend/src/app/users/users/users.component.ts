@@ -93,7 +93,7 @@ export class UsersComponent implements OnInit {
         return nameA.localeCompare(nameB);
     };
 
-    const firstPart = extractedData.slice(0, Math.min(8, extractedData.length)).sort(compare);
+    const firstPart = extractedData.slice(0, Math.min(6, extractedData.length)).sort(compare);
     const secondPart = extractedData.slice(8, Math.min(15, extractedData.length)).sort(compare);
 
     return { firstPart, secondPart };
