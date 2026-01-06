@@ -37,7 +37,7 @@ import { Section } from '../../model/section.model';
     }
 
     // Show ONLY last 4 items
-    this.visibleItems = items.slice(-4);
+    this.visibleItems = items.slice(-10);
   }
 
   openInNewTab(url: string) {
